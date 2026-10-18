@@ -98,35 +98,38 @@
 
         <!-- Mode Navigation Tabs -->
         <nav class="hidden md:flex items-center space-x-1 bg-slate-900/90 p-1.5 rounded-xl border border-slate-800">
-          <button onclick="switchMode('worked')" id="tab-worked" class="nav-tab px-3.5 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center space-x-2 bg-indigo-600 text-white shadow-sm">
+          <button onclick="switchMode('worked')" id="tab-worked" class="nav-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center space-x-1.5 bg-indigo-600 text-white shadow-sm">
             <i data-lucide="brain" class="w-4 h-4"></i>
             <span>จำคำตอบ (Worked)</span>
           </button>
-          <button onclick="switchMode('matching')" id="tab-matching" class="nav-tab px-3.5 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center space-x-2 text-slate-400 hover:text-slate-200">
+          <button onclick="switchMode('matching')" id="tab-matching" class="nav-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center space-x-1.5 text-slate-400 hover:text-slate-200">
             <i data-lucide="columns-2" class="w-4 h-4"></i>
             <span>จับคู่ (1.pdf)</span>
           </button>
-          <button onclick="switchMode('quiz')" id="tab-quiz" class="nav-tab px-3.5 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center space-x-2 text-slate-400 hover:text-slate-200">
+          <button onclick="switchMode('quiz')" id="tab-quiz" class="nav-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center space-x-1.5 text-slate-400 hover:text-slate-200">
             <i data-lucide="shuffle" class="w-4 h-4"></i>
             <span>ทำโจทย์สลับชอยส์</span>
           </button>
-          <button onclick="switchMode('flashcard')" id="tab-flashcard" class="nav-tab px-3.5 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center space-x-2 text-slate-400 hover:text-slate-200">
+          <button onclick="switchMode('flashcard')" id="tab-flashcard" class="nav-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center space-x-1.5 text-slate-400 hover:text-slate-200">
             <i data-lucide="layers" class="w-4 h-4"></i>
             <span>การ์ดจำเร็ว</span>
           </button>
-          <button onclick="switchMode('mock')" id="tab-mock" class="nav-tab px-3.5 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center space-x-2 text-slate-400 hover:text-slate-200">
+          <button onclick="switchMode('mock')" id="tab-mock" class="nav-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center space-x-1.5 text-slate-400 hover:text-slate-200">
             <i data-lucide="timer" class="w-4 h-4"></i>
             <span>จำลองสอบ 30 ข้อ</span>
+          </button>
+          <button onclick="switchMode('history')" id="tab-history" class="nav-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center space-x-1.5 text-slate-400 hover:text-slate-200">
+            <i data-lucide="award" class="w-4 h-4"></i>
+            <span>ผลสอบแต่ละรอบ</span>
           </button>
         </nav>
 
         <!-- Right Quick Actions -->
         <div class="flex items-center space-x-2">
-          <!-- User Profile & Login Button -->
-          <button onclick="openUserModal()" id="user-profile-btn" class="flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-indigo-500/50 hover:bg-slate-800 text-slate-200 transition-all text-xs font-medium cursor-pointer shadow-sm">
-            <span id="user-avatar-badge" class="text-base leading-none">🎓</span>
-            <span id="user-name-display" class="font-semibold text-slate-200 max-w-[90px] sm:max-w-[130px] truncate">นักศึกษา (Guest)</span>
-            <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" title="NoSQL JSON DB ซิงค์เรียบร้อย"></span>
+          <!-- History Quick Button -->
+          <button onclick="switchMode('history')" id="history-quick-btn" title="ดูผลคะแนนการทำแต่ละรอบและลบ Record" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 hover:bg-indigo-500/20 transition-all text-xs font-medium cursor-pointer shadow-sm">
+            <i data-lucide="award" class="w-4 h-4 text-cyan-400"></i>
+            <span>ผลสอบ (<span id="history-count">0</span>)</span>
           </button>
           <!-- Sound Toggle -->
           <button onclick="toggleSound()" id="sound-btn" title="เปิด/ปิดเสียงเอฟเฟกต์" class="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 transition-colors">
@@ -156,6 +159,9 @@
         </button>
         <button onclick="switchMode('mock')" id="m-tab-mock" class="mobile-tab whitespace-nowrap px-3 py-1 rounded-lg text-xs font-medium bg-slate-900 text-slate-400">
           จำลองสอบ 30 ข้อ
+        </button>
+        <button onclick="switchMode('history')" id="m-tab-history" class="mobile-tab whitespace-nowrap px-3 py-1 rounded-lg text-xs font-medium bg-slate-900 text-slate-400">
+          ผลสอบตามรอบ
         </button>
       </div>
     </div>
@@ -485,6 +491,48 @@
       </div>
     </section>
 
+    <!-- ============================================== -->
+    <!-- MODE 7: EXAM ROUND HISTORY (ผลสอบแต่ละรอบ & ลบได้) -->
+    <!-- ============================================== -->
+    <section id="view-history" class="mode-view hidden space-y-6">
+      <div class="max-w-4xl mx-auto space-y-6">
+        <!-- Header & Actions -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                Exam History Records
+              </span>
+              <span class="text-xs text-slate-400">ประวัติผลคะแนนในเครื่อง</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-white mt-1">ผลการทำข้อสอบจำลองแต่ละรอบ</h2>
+            <p class="text-xs text-slate-400">สามารถลบ Record คะแนนตามรอบได้ หรือกดเริ่มทำข้อสอบรอบใหม่</p>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <button onclick="clearAllExamHistory()" id="clear-all-history-btn" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-rose-950/40 text-slate-400 hover:text-rose-300 border border-slate-700 hover:border-rose-500/40 text-xs font-semibold flex items-center space-x-1.5 transition-all">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              <span>ล้างประวัติทั้งหมด</span>
+            </button>
+            <button onclick="switchMode('mock')" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold flex items-center space-x-1.5 shadow-md shadow-indigo-600/30 transition-all">
+              <i data-lucide="play" class="w-3.5 h-3.5"></i>
+              <span>เริ่มสอบจำลอง 30 ข้อ</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Summary Stats Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4" id="history-stats-bar">
+          <!-- Filled by app.js -->
+        </div>
+
+        <!-- Records List -->
+        <div id="history-records-container" class="space-y-3">
+          <!-- Filled dynamically by app.js -->
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- Footer -->
@@ -500,134 +548,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- User Authentication & Profile Modal -->
-  <div id="user-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md hidden transition-opacity">
-    <div class="relative w-full max-w-md bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl p-6 space-y-5 animate-in fade-in zoom-in-95 duration-200">
-      
-      <!-- Close Button -->
-      <button onclick="closeUserModal()" class="absolute top-5 right-5 p-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors">
-        <i data-lucide="x" class="w-4 h-4"></i>
-      </button>
-
-      <!-- Modal Header -->
-      <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-2xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-xl" id="modal-avatar-preview">
-          🎓
-        </div>
-        <div>
-          <h3 class="text-lg font-bold text-white">ระบบจัดการผู้ใช้ & สถิติ</h3>
-          <p class="text-xs text-slate-400">ฐานข้อมูล NoSQL JSON Database (database.json)</p>
-        </div>
-      </div>
-
-      <!-- Tabs Navigation -->
-      <div class="flex p-1 bg-slate-950 rounded-xl border border-slate-800 text-xs font-medium">
-        <button onclick="switchAuthTab('login')" id="auth-tab-login" class="flex-1 py-1.5 rounded-lg transition-all text-center font-semibold bg-indigo-600 text-white">
-          เข้าสู่ระบบ
-        </button>
-        <button onclick="switchAuthTab('register')" id="auth-tab-register" class="flex-1 py-1.5 rounded-lg transition-all text-center text-slate-400 hover:text-white">
-          สมัครใหม่
-        </button>
-        <button onclick="switchAuthTab('history')" id="auth-tab-history" class="flex-1 py-1.5 rounded-lg transition-all text-center text-slate-400 hover:text-white">
-          ประวัติการสอบ
-        </button>
-      </div>
-
-      <!-- Tab Content 1: Login Form -->
-      <div id="auth-content-login" class="space-y-4">
-        <div class="space-y-3">
-          <div>
-            <label class="block text-xs font-medium text-slate-400 mb-1">ชื่อผู้ใช้ (Username)</label>
-            <input type="text" id="login-username" placeholder="เช่น tinna หรือชื่อเล่น" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
-          </div>
-          <div>
-            <label class="block text-xs font-medium text-slate-400 mb-1">รหัสผ่าน (ถ้ามี)</label>
-            <input type="password" id="login-password" placeholder="ใส่รหัสผ่าน หรือเว้นว่างได้" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
-          </div>
-        </div>
-
-        <div id="login-msg" class="text-xs hidden p-2.5 rounded-lg border"></div>
-
-        <button onclick="handleLoginSubmit()" class="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/30 transition-all flex items-center justify-center space-x-2">
-          <i data-lucide="log-in" class="w-4 h-4"></i>
-          <span>เข้าสู่ระบบ & โหลดความคืบหน้า</span>
-        </button>
-
-        <div class="relative flex py-1 items-center">
-          <div class="flex-grow border-t border-slate-800"></div>
-          <span class="flex-shrink mx-2 text-[11px] text-slate-500 uppercase">หรือ</span>
-          <div class="flex-grow border-t border-slate-800"></div>
-        </div>
-
-        <button onclick="quickGuestLogin()" class="w-full py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium text-xs border border-slate-700 transition-colors">
-          ⚡ ใช้งานต่อแบบ Guest (ไม่ต้องจำรหัส)
-        </button>
-      </div>
-
-      <!-- Tab Content 2: Register Form -->
-      <div id="auth-content-register" class="space-y-4 hidden">
-        <div class="space-y-3">
-          <div>
-            <label class="block text-xs font-medium text-slate-400 mb-1">เลือกรูปประจำตัว (Avatar)</label>
-            <div class="flex items-center justify-between p-2 rounded-xl bg-slate-950 border border-slate-800" id="avatar-picker">
-              <span onclick="selectAvatar('🎓')" class="avatar-opt text-xl p-1.5 rounded-lg cursor-pointer bg-indigo-600/30 border border-indigo-500/40">🎓</span>
-              <span onclick="selectAvatar('💻')" class="avatar-opt text-xl p-1.5 rounded-lg cursor-pointer hover:bg-slate-800">💻</span>
-              <span onclick="selectAvatar('🛡️')" class="avatar-opt text-xl p-1.5 rounded-lg cursor-pointer hover:bg-slate-800">🛡️</span>
-              <span onclick="selectAvatar('⚡')" class="avatar-opt text-xl p-1.5 rounded-lg cursor-pointer hover:bg-slate-800">⚡</span>
-              <span onclick="selectAvatar('🚀')" class="avatar-opt text-xl p-1.5 rounded-lg cursor-pointer hover:bg-slate-800">🚀</span>
-              <span onclick="selectAvatar('🦊')" class="avatar-opt text-xl p-1.5 rounded-lg cursor-pointer hover:bg-slate-800">🦊</span>
-              <span onclick="selectAvatar('🦁')" class="avatar-opt text-xl p-1.5 rounded-lg cursor-pointer hover:bg-slate-800">🦁</span>
-              <span onclick="selectAvatar('👑')" class="avatar-opt text-xl p-1.5 rounded-lg cursor-pointer hover:bg-slate-800">👑</span>
-            </div>
-          </div>
-          <div>
-            <label class="block text-xs font-medium text-slate-400 mb-1">ตั้งชื่อผู้ใช้ใหม่</label>
-            <input type="text" id="reg-username" placeholder="ชื่อที่ต้องการใช้ในระบบ" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
-          </div>
-          <div>
-            <label class="block text-xs font-medium text-slate-400 mb-1">ตั้งรหัสผ่าน (ไม่บังคับ)</label>
-            <input type="password" id="reg-password" placeholder="ตั้งรหัสผ่าน หรือเว้นว่างได้" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
-          </div>
-        </div>
-
-        <div id="reg-msg" class="text-xs hidden p-2.5 rounded-lg border"></div>
-
-        <button onclick="handleRegisterSubmit()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-semibold text-sm shadow-lg shadow-emerald-600/30 transition-all flex items-center justify-center space-x-2">
-          <i data-lucide="user-plus" class="w-4 h-4"></i>
-          <span>สร้างบัญชีและเริ่มบันทึกคะแนน</span>
-        </button>
-      </div>
-
-      <!-- Tab Content 3: Exam History & Stats -->
-      <div id="auth-content-history" class="space-y-3 hidden max-h-[380px] overflow-y-auto pr-1">
-        <div class="flex items-center justify-between text-xs text-slate-400">
-          <span>สถิติผู้ใช้: <strong id="hist-username" class="text-white">นักศึกษา (Guest)</strong></span>
-          <span class="text-emerald-400 font-semibold" id="hist-mastered-count">จำได้แล้ว 0 ข้อ</span>
-        </div>
-        
-        <div id="history-items-container" class="space-y-2">
-          <!-- Filled dynamically by app.js -->
-        </div>
-
-        <div class="pt-2">
-          <button onclick="logoutUser()" class="w-full py-2 rounded-xl bg-slate-800 hover:bg-rose-950/40 text-slate-400 hover:text-rose-300 text-xs font-medium border border-slate-700 hover:border-rose-500/40 transition-colors">
-            ออกจากระบบ / สลับบัญชี
-          </button>
-        </div>
-      </div>
-
-      <!-- Database Info Footer -->
-      <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-500">
-        <span class="flex items-center space-x-1">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>NoSQL JSON DB Sync Active</span>
-        </span>
-        <a href="/api/database/export" target="_blank" class="text-indigo-400 hover:underline">ดาวน์โหลด database.json</a>
-      </div>
-
-    </div>
-  </div>
 
   <!-- Include Question Bank and App Logic -->
   <script src="questions.js"></script>

@@ -1,13 +1,14 @@
 /**
- * QuickTiew - Application Logic
- * Supports:
- * - Worked Examples (Reverse Engineering)
- * - Matching (1.pdf 10-item simulator)
- * - Multiple-Choice Quiz (100% shuffled questions & choices)
- * - Active Recall Flashcards (3D Flip)
- * - Mock Exam (30-item simulation with timer)
- * - Weak Spots Drill (LocalStorage & NoSQL JSON DB Sync)
- * - User Authentication & NoSQL JSON Database Integration (database.json)
+ * QuickTiew - Application Logic (Pure Client-side SPA)
+ * Zero bloat, zero unnecessary login, 100% offline capable.
+ * Modes:
+ * 1. Worked Examples (Reverse Engineering)
+ * 2. Matching Drill (1.pdf 10-item simulator)
+ * 3. Multiple-Choice Quiz (100% shuffled questions & choices)
+ * 4. Active Recall Flashcards (3D Flip)
+ * 5. Mock Exam (30 questions with timer)
+ * 6. Weak Spots Drill (Review mistakes)
+ * 7. Exam Round History (View & delete individual round records)
  */
 
 // Application State
@@ -16,13 +17,6 @@ let state = {
   currentSet: 'all',
   searchQuery: '',
   soundEnabled: true,
-  // User Session
-  currentUser: {
-    username: 'นักศึกษา (Guest)',
-    avatar: '🎓'
-  },
-  selectedAvatar: '🎓',
-  examHistory: [],
   // Question collections
   filteredQuestions: [],
   // Quiz Mode
@@ -42,9 +36,10 @@ let state = {
   mockTimerSeconds: 1800, // 30 mins
   mockTimerInterval: null,
   mockSubmitted: false,
-  // Storage
+  // Storage & History
   weakSpots: new Set(),
-  mastered: new Set()
+  mastered: new Set(),
+  examHistory: [] // Array of { id, round, score, total, percentage, passed, duration, wrongCount, timestamp }
 };
 
 // ==========================================
@@ -87,9 +82,7 @@ class SoundFX {
 
       osc.start(now);
       osc.stop(now + 0.35);
-    } catch (e) {
-      console.warn('Audio error:', e);
-    }
+    } catch (e) {}
   }
 
   playError() {
@@ -114,9 +107,7 @@ class SoundFX {
 
       osc.start(now);
       osc.stop(now + 0.3);
-    } catch (e) {
-      console.warn('Audio error:', e);
-    }
+    } catch (e) {}
   }
 
   playClick() {
@@ -158,356 +149,46 @@ function shuffleArray(arr) {
 }
 
 // ==========================================
-// User Authentication & NoSQL JSON DB Sync
+// LocalStorage Persistence
 // ==========================================
-function openUserModal() {
-  sfx.playClick();
-  const modal = document.getElementById('user-modal');
-  if (modal) {
-    modal.classList.remove('hidden');
-    switchAuthTab(state.currentUser.username !== 'นักศึกษา (Guest)' ? 'history' : 'login');
-  }
-}
-
-function closeUserModal() {
-  sfx.playClick();
-  const modal = document.getElementById('user-modal');
-  if (modal) modal.classList.add('hidden');
-}
-
-function switchAuthTab(tab) {
-  sfx.playClick();
-  const tabs = ['login', 'register', 'history'];
-  tabs.forEach(t => {
-    const btn = document.getElementById(`auth-tab-${t}`);
-    const content = document.getElementById(`auth-content-${t}`);
-    if (t === tab) {
-      if (btn) {
-        btn.className = 'flex-1 py-1.5 rounded-lg transition-all text-center font-semibold bg-indigo-600 text-white';
-      }
-      if (content) content.classList.remove('hidden');
-    } else {
-      if (btn) {
-        btn.className = 'flex-1 py-1.5 rounded-lg transition-all text-center text-slate-400 hover:text-white';
-      }
-      if (content) content.classList.add('hidden');
-    }
-  });
-
-  if (tab === 'history') {
-    renderUserHistory();
-  }
-  if (window.lucide) lucide.createIcons();
-}
-
-function selectAvatar(avatar) {
-  sfx.playClick();
-  state.selectedAvatar = avatar;
-  const preview = document.getElementById('modal-avatar-preview');
-  if (preview) preview.textContent = avatar;
-
-  const opts = document.querySelectorAll('.avatar-opt');
-  opts.forEach(el => {
-    if (el.textContent.trim() === avatar) {
-      el.className = 'avatar-opt text-xl p-1.5 rounded-lg cursor-pointer bg-indigo-600/30 border border-indigo-500/40';
-    } else {
-      el.className = 'avatar-opt text-xl p-1.5 rounded-lg cursor-pointer hover:bg-slate-800';
-    }
-  });
-}
-
-async function handleLoginSubmit() {
-  const usernameInput = document.getElementById('login-username');
-  const passwordInput = document.getElementById('login-password');
-  const msgEl = document.getElementById('login-msg');
-
-  const username = usernameInput ? usernameInput.value.trim() : '';
-  const password = passwordInput ? passwordInput.value : '';
-
-  if (!username) {
-    showAuthMsg(msgEl, 'กรุณากรอกชื่อผู้ใช้', false);
-    return;
-  }
-
+function loadStorage() {
   try {
-    const res = await fetch('/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
-    });
-    const data = await res.json();
-
-    if (data.success) {
-      state.currentUser = {
-        username: data.user.username,
-        avatar: data.user.avatar || '🎓'
-      };
-      if (data.progress) {
-        state.mastered = new Set(data.progress.mastered || []);
-        state.weakSpots = new Set(data.progress.weakSpots || []);
-        state.quizResults = data.progress.quizStats || { correct: 0, wrong: 0 };
-      }
-      if (data.examHistory) {
-        state.examHistory = data.examHistory;
-      }
-      saveStorageLocally();
-      updateUserUI();
-      sfx.playSuccess();
-      showAuthMsg(msgEl, 'เข้าสู่ระบบสำเร็จ! โหลดความคืบหน้าเรียบร้อย', true);
-      setTimeout(() => closeUserModal(), 800);
-    } else {
-      sfx.playError();
-      showAuthMsg(msgEl, data.message || 'เข้าสู่ระบบไม่สำเร็จ', false);
-    }
-  } catch (err) {
-    // Server offline, local fallback
-    state.currentUser = { username, avatar: '🎓' };
-    saveStorageLocally();
-    updateUserUI();
-    showAuthMsg(msgEl, 'เข้าสู่ระบบโหมด Local แล้ว', true);
-    setTimeout(() => closeUserModal(), 800);
-  }
-}
-
-async function handleRegisterSubmit() {
-  const usernameInput = document.getElementById('reg-username');
-  const passwordInput = document.getElementById('reg-password');
-  const msgEl = document.getElementById('reg-msg');
-
-  const username = usernameInput ? usernameInput.value.trim() : '';
-  const password = passwordInput ? passwordInput.value : '';
-  const avatar = state.selectedAvatar || '🎓';
-
-  if (!username) {
-    showAuthMsg(msgEl, 'กรุณากรอกชื่อผู้ใช้', false);
-    return;
-  }
-
-  try {
-    const res = await fetch('/api/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password, avatar })
-    });
-    const data = await res.json();
-
-    if (data.success) {
-      state.currentUser = { username, avatar };
-      state.mastered = new Set();
-      state.weakSpots = new Set();
-      state.examHistory = [];
-      saveStorageLocally();
-      updateUserUI();
-      sfx.playSuccess();
-      showAuthMsg(msgEl, 'สมัครบัญชีสำเร็จ! เริ่มต้นบันทึกความคืบหน้า', true);
-      setTimeout(() => closeUserModal(), 800);
-    } else {
-      sfx.playError();
-      showAuthMsg(msgEl, data.message || 'สมัครไม่สำเร็จ', false);
-    }
-  } catch (err) {
-    // Local fallback
-    state.currentUser = { username, avatar };
-    saveStorageLocally();
-    updateUserUI();
-    showAuthMsg(msgEl, 'สร้างบัญชีในเครื่องสำเร็จ', true);
-    setTimeout(() => closeUserModal(), 800);
-  }
-}
-
-function quickGuestLogin() {
-  state.currentUser = { username: 'นักศึกษา (Guest)', avatar: '🎓' };
-  saveStorageLocally();
-  updateUserUI();
-  sfx.playClick();
-  closeUserModal();
-}
-
-function logoutUser() {
-  sfx.playClick();
-  state.currentUser = { username: 'นักศึกษา (Guest)', avatar: '🎓' };
-  saveStorageLocally();
-  updateUserUI();
-  switchAuthTab('login');
-}
-
-function showAuthMsg(el, text, isSuccess) {
-  if (!el) return;
-  el.classList.remove('hidden', 'bg-emerald-950/40', 'border-emerald-500/40', 'text-emerald-300', 'bg-rose-950/40', 'border-rose-500/40', 'text-rose-300');
-  if (isSuccess) {
-    el.classList.add('bg-emerald-950/40', 'border-emerald-500/40', 'text-emerald-300');
-  } else {
-    el.classList.add('bg-rose-950/40', 'border-rose-500/40', 'text-rose-300');
-  }
-  el.textContent = text;
-}
-
-function updateUserUI() {
-  const avatarEl = document.getElementById('user-avatar-badge');
-  const nameEl = document.getElementById('user-name-display');
-  const histUserEl = document.getElementById('hist-username');
-  const histMasteredEl = document.getElementById('hist-mastered-count');
-
-  if (avatarEl) avatarEl.textContent = state.currentUser.avatar || '🎓';
-  if (nameEl) nameEl.textContent = state.currentUser.username;
-  if (histUserEl) histUserEl.textContent = state.currentUser.username;
-  if (histMasteredEl) histMasteredEl.textContent = `จำได้แล้ว ${state.mastered.size} ข้อ`;
-
-  updateWeakCountBadge();
-  renderWorkedExamples();
-}
-
-function renderUserHistory() {
-  const container = document.getElementById('history-items-container');
-  if (!container) return;
-
-  if (!state.examHistory || state.examHistory.length === 0) {
-    container.innerHTML = `
-      <div class="text-center py-8 text-slate-500 text-xs">
-        ยังไม่มีประวัติการสอบจำลอง (Mock Exam)<br>
-        ไปที่แท็บ "จำลองสอบ 30 ข้อ" เพื่อเริ่มสอบ
-      </div>
-    `;
-    return;
-  }
-
-  // Sort latest first
-  const sorted = [...state.examHistory].reverse();
-  container.innerHTML = sorted.map((ex, i) => `
-    <div class="p-3 rounded-xl bg-slate-950 border ${ex.passed ? 'border-emerald-500/30' : 'border-rose-500/30'} flex items-center justify-between text-xs">
-      <div class="flex items-center space-x-2.5">
-        <span class="w-8 h-8 rounded-lg ${ex.passed ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'} font-bold flex items-center justify-center font-mono">
-          ${ex.score}/${ex.total}
-        </span>
-        <div>
-          <div class="font-semibold ${ex.passed ? 'text-emerald-300' : 'text-rose-300'}">
-            ${ex.passed ? '✓ ผ่านเกณฑ์' : '✗ ไม่ผ่าน'} (${ex.percentage}%)
-          </div>
-          <div class="text-[10px] text-slate-500">${ex.timestamp || 'เพิ่งทำเสร็จ'}</div>
-        </div>
-      </div>
-      <div class="text-right text-[11px] text-slate-400">
-        ผิด ${ex.wrongCount || (ex.total - ex.score)} ข้อ
-      </div>
-    </div>
-  `).join('');
-}
-
-// ==========================================
-// Persistence: Local + Server NoSQL JSON Sync
-// ==========================================
-async function syncServerProgress() {
-  if (!state.currentUser || !state.currentUser.username) return;
-
-  try {
-    await fetch('/api/user/progress', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username: state.currentUser.username,
-        progress: {
-          mastered: [...state.mastered],
-          weakSpots: [...state.weakSpots],
-          quizStats: state.quizResults
-        }
-      })
-    });
-  } catch (e) {
-    // Offline mode silently handles storage locally
-  }
-}
-
-async function syncServerExam(examRecord) {
-  try {
-    const res = await fetch('/api/user/exam', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(examRecord)
-    });
-    const data = await res.json();
-    if (data.examRecord) {
-      state.examHistory.push(data.examRecord);
-    }
-  } catch (e) {
-    state.examHistory.push(examRecord);
-  }
-}
-
-function saveStorageLocally() {
-  try {
-    const uKey = `quicktiew_${state.currentUser.username}`;
-    localStorage.setItem(`${uKey}_weak`, JSON.stringify([...state.weakSpots]));
-    localStorage.setItem(`${uKey}_mastered`, JSON.stringify([...state.mastered]));
-    localStorage.setItem(`${uKey}_history`, JSON.stringify(state.examHistory));
-    localStorage.setItem('quicktiew_current_user', JSON.stringify(state.currentUser));
-    localStorage.setItem('quicktiew_sound', JSON.stringify(state.soundEnabled));
-  } catch (e) {
-    console.error('Failed to save localStorage', e);
-  }
-  updateWeakCountBadge();
-}
-
-function saveStorage() {
-  saveStorageLocally();
-  syncServerProgress();
-}
-
-async function loadStorage() {
-  try {
-    // 1. Current user
-    const savedUser = localStorage.getItem('quicktiew_current_user');
-    if (savedUser) {
-      state.currentUser = JSON.parse(savedUser);
-    }
-
-    const savedSound = localStorage.getItem('quicktiew_sound');
-    if (savedSound !== null) {
-      state.soundEnabled = JSON.parse(savedSound);
-    }
-
-    const uKey = `quicktiew_${state.currentUser.username}`;
-    const savedWeak = localStorage.getItem(`${uKey}_weak`);
+    const savedWeak = localStorage.getItem('quicktiew_weak_spots');
     if (savedWeak) state.weakSpots = new Set(JSON.parse(savedWeak));
 
-    const savedMastered = localStorage.getItem(`${uKey}_mastered`);
+    const savedMastered = localStorage.getItem('quicktiew_mastered');
     if (savedMastered) state.mastered = new Set(JSON.parse(savedMastered));
 
-    const savedHistory = localStorage.getItem(`${uKey}_history`);
+    const savedHistory = localStorage.getItem('quicktiew_exam_history');
     if (savedHistory) state.examHistory = JSON.parse(savedHistory);
 
-    // Try fetching from Server NoSQL Database
-    if (state.currentUser.username) {
-      try {
-        const res = await fetch(`/api/user/progress?username=${encodeURIComponent(state.currentUser.username)}`);
-        if (res.ok) {
-          const data = await res.json();
-          if (data.progress) {
-            if (data.progress.mastered && data.progress.mastered.length > 0) {
-              state.mastered = new Set(data.progress.mastered);
-            }
-            if (data.progress.weakSpots && data.progress.weakSpots.length > 0) {
-              state.weakSpots = new Set(data.progress.weakSpots);
-            }
-          }
-          if (data.examHistory) {
-            state.examHistory = data.examHistory;
-          }
-        }
-      } catch (err) {
-        // server offline, local storage kept
-      }
-    }
+    const savedSound = localStorage.getItem('quicktiew_sound');
+    if (savedSound !== null) state.soundEnabled = JSON.parse(savedSound);
   } catch (e) {
-    console.error('Failed to load storage', e);
+    console.warn('LocalStorage error:', e);
   }
-
-  updateUserUI();
+  updateBadges();
   updateSoundIcon();
 }
 
-function updateWeakCountBadge() {
-  const el = document.getElementById('weak-count');
-  if (el) el.textContent = state.weakSpots.size;
+function saveStorage() {
+  try {
+    localStorage.setItem('quicktiew_weak_spots', JSON.stringify([...state.weakSpots]));
+    localStorage.setItem('quicktiew_mastered', JSON.stringify([...state.mastered]));
+    localStorage.setItem('quicktiew_exam_history', JSON.stringify(state.examHistory));
+    localStorage.setItem('quicktiew_sound', JSON.stringify(state.soundEnabled));
+  } catch (e) {
+    console.warn('LocalStorage save error:', e);
+  }
+  updateBadges();
+}
+
+function updateBadges() {
+  const weakEl = document.getElementById('weak-count');
+  if (weakEl) weakEl.textContent = state.weakSpots.size;
+
+  const histQuickEl = document.getElementById('history-count');
+  if (histQuickEl) histQuickEl.textContent = state.examHistory.length;
 }
 
 function updateSoundIcon() {
@@ -620,7 +301,7 @@ function switchMode(mode) {
   sfx.playClick();
   state.currentMode = mode;
 
-  const modes = ['worked', 'matching', 'quiz', 'flashcard', 'mock', 'weakness'];
+  const modes = ['worked', 'matching', 'quiz', 'flashcard', 'mock', 'weakness', 'history'];
   modes.forEach(m => {
     const desktopTab = document.getElementById(`tab-${m}`);
     const mobileTab = document.getElementById(`m-tab-${m}`);
@@ -628,7 +309,7 @@ function switchMode(mode) {
 
     if (m === mode) {
       if (desktopTab) {
-        desktopTab.className = 'nav-tab px-3.5 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center space-x-2 bg-indigo-600 text-white shadow-sm';
+        desktopTab.className = 'nav-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center space-x-1.5 bg-indigo-600 text-white shadow-sm';
       }
       if (mobileTab) {
         mobileTab.className = 'mobile-tab whitespace-nowrap px-3 py-1 rounded-lg text-xs font-medium bg-indigo-600 text-white';
@@ -636,7 +317,7 @@ function switchMode(mode) {
       if (view) view.classList.remove('hidden');
     } else {
       if (desktopTab) {
-        desktopTab.className = 'nav-tab px-3.5 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center space-x-2 text-slate-400 hover:text-slate-200';
+        desktopTab.className = 'nav-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center space-x-1.5 text-slate-400 hover:text-slate-200';
       }
       if (mobileTab) {
         mobileTab.className = 'mobile-tab whitespace-nowrap px-3 py-1 rounded-lg text-xs font-medium bg-slate-900 text-slate-400';
@@ -661,6 +342,8 @@ function switchMode(mode) {
     }
   } else if (mode === 'weakness') {
     renderWeakSpots();
+  } else if (mode === 'history') {
+    renderExamHistory();
   }
 
   if (window.lucide) lucide.createIcons();
@@ -695,7 +378,6 @@ function renderWorkedExamples() {
     return `
       <div class="rounded-2xl p-5 bg-slate-900/90 border border-slate-800/90 hover:border-indigo-500/40 transition-all flex flex-col justify-between space-y-4 shadow-lg group">
         <div class="space-y-3">
-          <!-- Top meta line -->
           <div class="flex items-center justify-between gap-2">
             <div class="flex items-center space-x-2">
               <span class="w-7 h-7 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-xs font-mono font-bold flex items-center justify-center">
@@ -708,7 +390,6 @@ function renderWorkedExamples() {
             </span>
           </div>
 
-          <!-- Question -->
           <div>
             <div class="text-xs uppercase tracking-wider text-slate-500 font-semibold mb-1">โจทย์ข้อสอบ</div>
             <h3 class="text-base sm:text-lg font-semibold text-white leading-snug">
@@ -716,7 +397,6 @@ function renderWorkedExamples() {
             </h3>
           </div>
 
-          <!-- Worked Answer (Highlighted) -->
           <div class="p-3.5 rounded-xl bg-emerald-950/30 border border-emerald-500/30 space-y-1">
             <div class="flex items-center space-x-1.5 text-xs font-bold uppercase tracking-wider text-emerald-400">
               <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
@@ -727,7 +407,6 @@ function renderWorkedExamples() {
             </div>
           </div>
 
-          <!-- Reverse Engineering Hook -->
           <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-200/90 flex items-start space-x-2">
             <i data-lucide="lightbulb" class="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5"></i>
             <div>
@@ -735,13 +414,11 @@ function renderWorkedExamples() {
             </div>
           </div>
 
-          <!-- Explanation -->
           <div class="text-xs text-slate-300 leading-relaxed bg-slate-950/60 p-3 rounded-xl border border-slate-800">
             <span class="font-semibold text-indigo-300">เหตุผลประกอบ:</span> ${escapeHtml(q.explanation)}
           </div>
         </div>
 
-        <!-- Bottom Actions -->
         <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
           <div class="flex flex-wrap gap-1">
             ${q.keywords.map(k => `<span class="px-2 py-0.5 bg-slate-800 text-slate-400 text-[10px] rounded-md font-mono">${escapeHtml(k)}</span>`).join('')}
@@ -949,12 +626,8 @@ function renderQuiz() {
   const list = state.filteredQuestions;
   if (list.length === 0) return;
 
-  if (state.quizIndex >= list.length) {
-    state.quizIndex = list.length - 1;
-  }
-  if (state.quizIndex < 0) {
-    state.quizIndex = 0;
-  }
+  if (state.quizIndex >= list.length) state.quizIndex = list.length - 1;
+  if (state.quizIndex < 0) state.quizIndex = 0;
 
   const q = list[state.quizIndex];
 
@@ -1160,7 +833,6 @@ function prevFlashcard() {
   renderFlashcard();
 }
 
-// Spacebar / Keyboard navigation
 window.addEventListener('keydown', (e) => {
   if (state.currentMode === 'flashcard') {
     if (e.code === 'Space') {
@@ -1298,17 +970,24 @@ function submitMockExam() {
   const pct = Math.round((score / total) * 100);
   const isPass = pct >= 80;
 
-  // Save exam record to NoSQL JSON DB
-  const examRecord = {
-    username: state.currentUser.username,
+  // Record round attempt
+  const now = new Date();
+  const dateStr = `${now.toLocaleDateString('th-TH')} ${now.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' })}`;
+  const timerEl = document.getElementById('mock-timer');
+  const durationUsed = timerEl ? timerEl.textContent : '30:00';
+
+  const newRecord = {
+    id: `rec_${Date.now()}`,
+    round: state.examHistory.length + 1,
     score: score,
     total: total,
     percentage: pct,
     passed: isPass,
-    duration: document.getElementById('mock-timer') ? document.getElementById('mock-timer').textContent : '30:00',
-    wrongCount: total - score
+    duration: durationUsed,
+    wrongCount: total - score,
+    timestamp: dateStr
   };
-  syncServerExam(examRecord);
+  state.examHistory.push(newRecord);
   saveStorage();
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1331,16 +1010,16 @@ function submitMockExam() {
               ${isPass ? '🎉 ผ่านเกณฑ์การทดสอบยอดเยี่ยม!' : '⚠️ ยังไม่ผ่านเกณฑ์ 80%'}
             </h3>
             <p class="text-xs text-slate-300 mt-1">
-              คุณทำได้ ${pct}% (บันทึกลง NoSQL JSON Database เรียบร้อย ข้อที่ผิดถูกส่งไปคลังข้อผิด)
+              คุณทำได้ ${pct}% (บันทึกผลการสอบรอบที่ ${newRecord.round} เรียบร้อยแล้ว)
             </p>
           </div>
         </div>
         <div class="flex items-center space-x-2">
           <button onclick="initMockExam()" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md transition-all">
-            สอบใหม่อีกรอบ (สุ่ม 30 ข้อใหม่)
+            สอบใหม่อีกรอบ
           </button>
-          <button onclick="switchMode('weakness')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition-all">
-            ไปติวข้อที่ผิด
+          <button onclick="switchMode('history')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition-all">
+            ดูผลสอบตามรอบ
           </button>
         </div>
       </div>
@@ -1425,6 +1104,118 @@ function clearWeakSpots() {
   }
 }
 
+// ==========================================
+// MODE 7: EXAM ROUND HISTORY (ผลสอบแต่ละรอบ & ลบได้)
+// ==========================================
+function renderExamHistory() {
+  const container = document.getElementById('history-records-container');
+  const statsBar = document.getElementById('history-stats-bar');
+  if (!container) return;
+
+  const list = state.examHistory;
+
+  // Stats bar calculation
+  if (statsBar) {
+    const totalRounds = list.length;
+    const bestScore = list.length > 0 ? Math.max(...list.map(r => r.score)) : 0;
+    const passedCount = list.filter(r => r.passed).length;
+    const passRate = totalRounds > 0 ? Math.round((passedCount / totalRounds) * 100) : 0;
+
+    statsBar.innerHTML = `
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+        <span class="text-xs text-slate-400">รอบที่ทำทั้งหมด</span>
+        <div class="text-2xl font-bold text-indigo-400">${totalRounds} รอบ</div>
+      </div>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+        <span class="text-xs text-slate-400">คะแนนสูงสุดที่ทำได้</span>
+        <div class="text-2xl font-bold text-emerald-400">${bestScore} <span class="text-xs font-normal text-slate-400">/ 30 ข้อ</span></div>
+      </div>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+        <span class="text-xs text-slate-400">อัตราผ่านเกณฑ์ (>= 80%)</span>
+        <div class="text-2xl font-bold ${passRate >= 80 ? 'text-emerald-400' : 'text-amber-400'}">${passRate}%</div>
+      </div>
+    `;
+  }
+
+  if (list.length === 0) {
+    container.innerHTML = `
+      <div class="text-center py-16 bg-slate-900/60 rounded-2xl border border-slate-800 space-y-3">
+        <i data-lucide="award" class="w-12 h-12 mx-auto text-slate-600"></i>
+        <h4 class="text-base font-semibold text-slate-300">ยังไม่มีประวัติการทำข้อสอบ</h4>
+        <p class="text-xs text-slate-500 max-w-sm mx-auto">
+          เมื่อคุณทำข้อสอบในโหมด "จำลองสอบ 30 ข้อ" ระบบจะบันทึกคะแนนและเวลาในแต่ละรอบไว้ที่นี่
+        </p>
+        <button onclick="switchMode('mock')" class="mt-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold">
+          เริ่มทำข้อสอบจำลองเลย
+        </button>
+      </div>
+    `;
+    if (window.lucide) lucide.createIcons();
+    return;
+  }
+
+  // Display records (latest first)
+  const reversedList = [...list].reverse();
+  container.innerHTML = reversedList.map((rec) => `
+    <div class="p-4 rounded-xl bg-slate-900 border ${rec.passed ? 'border-emerald-500/40 hover:border-emerald-500' : 'border-rose-500/40 hover:border-rose-500'} flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 transition-all shadow-md">
+      <div class="flex items-center space-x-3.5">
+        <div class="w-12 h-12 rounded-xl ${rec.passed ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-rose-500/20 text-rose-400 border border-rose-500/30'} flex flex-col items-center justify-center font-bold flex-shrink-0">
+          <span class="text-base leading-none">${rec.score}</span>
+          <span class="text-[9px] uppercase font-mono tracking-wider opacity-80">/${rec.total}</span>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="font-bold text-white text-sm">รอบที่ ${rec.round}</span>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold ${rec.passed ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-rose-500/20 text-rose-300 border border-rose-500/30'}">
+              ${rec.passed ? '✓ ผ่านเกณฑ์ (80%+)' : '✗ ไม่ผ่าน'}
+            </span>
+            <span class="text-xs text-slate-400 font-mono">(${rec.percentage}%)</span>
+          </div>
+          <div class="text-xs text-slate-500 flex items-center space-x-2 mt-0.5">
+            <span>📅 ${rec.timestamp}</span>
+            <span>•</span>
+            <span>⏱️ เวลาที่เหลือ: ${rec.duration}</span>
+            <span>•</span>
+            <span class="text-rose-400/90">ผิด ${rec.wrongCount} ข้อ</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Delete individual round button -->
+      <button onclick="deleteExamRecord('${rec.id}')" title="ลบ Record คะแนนรอบที่ ${rec.round}" class="self-end sm:self-center px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-rose-950/40 text-slate-400 hover:text-rose-300 border border-slate-700 hover:border-rose-500/40 text-xs font-medium flex items-center space-x-1.5 transition-colors">
+        <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+        <span>ลบรอบนี้</span>
+      </button>
+    </div>
+  `).join('');
+
+  if (window.lucide) lucide.createIcons();
+}
+
+function deleteExamRecord(recordId) {
+  sfx.playClick();
+  const target = state.examHistory.find(r => r.id === recordId);
+  const roundNum = target ? target.round : '';
+
+  if (confirm(`คุณต้องการลบประวัติคะแนนของ "รอบที่ ${roundNum}" ใช่หรือไม่?`)) {
+    state.examHistory = state.examHistory.filter(r => r.id !== recordId);
+    saveStorage();
+    renderExamHistory();
+    sfx.playSuccess();
+  }
+}
+
+function clearAllExamHistory() {
+  if (state.examHistory.length === 0) return;
+  sfx.playClick();
+  if (confirm('คุณต้องการล้างประวัติการสอบทุกรอบทิ้งทั้งหมดใช่หรือไม่?')) {
+    state.examHistory = [];
+    saveStorage();
+    renderExamHistory();
+    sfx.playSuccess();
+  }
+}
+
 // Helper: Escape HTML
 function escapeHtml(str) {
   if (!str) return '';
@@ -1437,8 +1228,8 @@ function escapeHtml(str) {
 }
 
 // Initial Launch on DOM Ready
-document.addEventListener('DOMContentLoaded', async () => {
-  await loadStorage();
+document.addEventListener('DOMContentLoaded', () => {
+  loadStorage();
   state.filteredQuestions = getFilteredQuestions();
   switchMode('worked');
 });
