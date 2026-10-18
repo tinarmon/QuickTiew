@@ -1,0 +1,8 @@
+# Temporary dumps and rendered images
+dump_*.txt
+page_*.png
+slide*.png
+2.pdf
+__pycache__/
+*.pyc
+.DS_Store

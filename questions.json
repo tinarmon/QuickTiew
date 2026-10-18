@@ -1,0 +1,1910 @@
+[
+  {
+    "id": 1,
+    "set": 1,
+    "setName": "ชุดที่ 1: พื้นฐานความปลอดภัยของเว็บและภัยคุกคาม (1.pdf)",
+    "category": "Web Security Fundamentals",
+    "question": "เปอร์เซ็นต์การโจมตีทางไซเบอร์ที่มุ่งเป้าที่ระดับแอปพลิเคชัน",
+    "answer": "85%+",
+    "choices": [
+      "85%+",
+      "Web Security",
+      "ประตูบานแรกสู่การเจาะระบบข้อมูลภายในองค์กร",
+      "ผู้นั้น คือ เสี่ยง",
+      "Denial of Service (DoS)",
+      "การสวมรอยเป็นผู้ใช้งานตัวจริง",
+      "ตัวอย่างของภัยคุกคามทางไซเบอร์",
+      "เบราว์เซอร์แฝงม้าโทรจัน",
+      "ภัยคุกคามต่อการรักษาความลับ (Confidentiality)",
+      "Phishing (ฟิชชิ่ง)"
+    ],
+    "explanation": "สถิติในเอกสารบรรยายหน้า 1 ระบุชัดเจนว่า '85%+ การโจมตีทางไซเบอร์มุ่งเป้าที่ระดับแอปพลิเคชัน' เนื่องจากเว็บแอปพลิเคชันเป็นจุดที่มีความซับซ้อน เข้าถึงได้ง่ายจากอินเทอร์เน็ตภายนอก",
+    "memoryHook": "ตัวเลขเปอร์เซ็นต์เดียวในบทนี้! ข้อความถาม 'เปอร์เซ็นต์การโจมตีระดับแอป' ตอบ '85%+' ทันที",
+    "keywords": [
+      "85%+",
+      "ระดับแอปพลิเคชัน",
+      "เปอร์เซ็นต์การโจมตี"
+    ]
+  },
+  {
+    "id": 2,
+    "set": 1,
+    "setName": "ชุดที่ 1: พื้นฐานความปลอดภัยของเว็บและภัยคุกคาม (1.pdf)",
+    "category": "Web Security Fundamentals",
+    "question": "เว็บไซต์ปลอม, มัลแวร์, การแฮ็กข้อมูล",
+    "answer": "ตัวอย่างของภัยคุกคามทางไซเบอร์",
+    "choices": [
+      "ตัวอย่างของภัยคุกคามทางไซเบอร์",
+      "Web Security",
+      "85%+",
+      "ประตูบานแรกสู่การเจาะระบบข้อมูลภายในองค์กร",
+      "ผู้นั้น คือ เสี่ยง",
+      "Denial of Service (DoS)",
+      "การสวมรอยเป็นผู้ใช้งานตัวจริง",
+      "เบราว์เซอร์แฝงม้าโทรจัน",
+      "ภัยคุกคามต่อการรักษาความลับ (Confidentiality)",
+      "Phishing (ฟิชชิ่ง)"
+    ],
+    "explanation": "ตามสไลด์หน้า 2: Web Security มีจุดประสงค์ให้ผู้ใช้ปลอดภัยจากการโจมตี เช่น 'การแฮ็กข้อมูล, ฟิชชิ่ง, เว็บไซต์ปลอม, และมัลแวร์' ซึ่งทั้งหมดนี้เป็น 'ตัวอย่างของภัยคุกคามทางไซเบอร์'",
+    "memoryHook": "เมื่อโจทย์มีเครื่องหมายจุลภาคและยกรายการภัยอันตรายมารวมกัน = ตอบ 'ตัวอย่างของภัยคุกคามทางไซเบอร์'",
+    "keywords": [
+      "เว็บไซต์ปลอม",
+      "มัลแวร์",
+      "การแฮ็กข้อมูล",
+      "ตัวอย่างภัยคุกคาม"
+    ]
+  },
+  {
+    "id": 3,
+    "set": 1,
+    "setName": "ชุดที่ 1: พื้นฐานความปลอดภัยของเว็บและภัยคุกคาม (1.pdf)",
+    "category": "Web Security Fundamentals",
+    "question": "ช่องโหว่บนระบบเว็บ",
+    "answer": "ประตูบานแรกสู่การเจาะระบบข้อมูลภายในองค์กร",
+    "choices": [
+      "ประตูบานแรกสู่การเจาะระบบข้อมูลภายในองค์กร",
+      "Web Security",
+      "85%+",
+      "ตัวอย่างของภัยคุกคามทางไซเบอร์",
+      "ผู้นั้น คือ เสี่ยง",
+      "Denial of Service (DoS)",
+      "การสวมรอยเป็นผู้ใช้งานตัวจริง",
+      "เบราว์เซอร์แฝงม้าโทรจัน",
+      "ภัยคุกคามต่อการรักษาความลับ (Confidentiality)",
+      "Phishing (ฟิชชิ่ง)"
+    ],
+    "explanation": "สไลด์หน้า 1 ระบุคำกล่าวเด็ด: 'ช่องโหว่บนระบบเว็บ คือ ประตูบานแรกสู่การเจาะระบบข้อมูลภายในองค์กร' เพราะเว็บตั้งอยู่หน้าด่านของระบบไอที",
+    "memoryHook": "ช่องโหว่ = 'ประตูบานแรก' (Front Door for Intruders)",
+    "keywords": [
+      "ช่องโหว่",
+      "ประตูบานแรก",
+      "เจาะระบบข้อมูลภายใน"
+    ]
+  },
+  {
+    "id": 4,
+    "set": 1,
+    "setName": "ชุดที่ 1: พื้นฐานความปลอดภัยของเว็บและภัยคุกคาม (1.pdf)",
+    "category": "Web Security Fundamentals",
+    "question": "เว็บไซต์และประสบการณ์ผู้ใช้งานปลอดภัยจากการโจมตี",
+    "answer": "Web Security",
+    "choices": [
+      "Web Security",
+      "85%+",
+      "ประตูบานแรกสู่การเจาะระบบข้อมูลภายในองค์กร",
+      "ตัวอย่างของภัยคุกคามทางไซเบอร์",
+      "ผู้นั้น คือ เสี่ยง",
+      "Denial of Service (DoS)",
+      "การสวมรอยเป็นผู้ใช้งานตัวจริง",
+      "เบราว์เซอร์แฝงม้าโทรจัน",
+      "ภัยคุกคามต่อการรักษาความลับ (Confidentiality)",
+      "Phishing (ฟิชชิ่ง)"
+    ],
+    "explanation": "นิยามของ Web Security ในสไลด์หน้า 2 คือกระบวนการที่ทำให้เว็บไซต์และประสบการณ์ของผู้ใช้งานบนอินเทอร์เน็ตปลอดภัยจากการโจมตี",
+    "memoryHook": "เห็นคำว่า 'เว็บไซต์และประสบการณ์ผู้ใช้งานปลอดภัย' = นิยามของ 'Web Security'",
+    "keywords": [
+      "ประสบการณ์ผู้ใช้งานปลอดภัย",
+      "Web Security"
+    ]
+  },
+  {
+    "id": 5,
+    "set": 1,
+    "setName": "ชุดที่ 1: พื้นฐานความปลอดภัยของเว็บและภัยคุกคาม (1.pdf)",
+    "category": "Web Security Fundamentals",
+    "question": "ภัยคุกคามประเภทส่งคำขอปลอมจำนวนมหาศาลเพื่อถล่มเครื่องเป้าหมาย",
+    "answer": "Denial of Service (DoS)",
+    "choices": [
+      "Denial of Service (DoS)",
+      "Phishing (ฟิชชิ่ง)",
+      "Web Security",
+      "85%+",
+      "ผู้นั้น คือ เสี่ยง",
+      "การสวมรอยเป็นผู้ใช้งานตัวจริง",
+      "ตัวอย่างของภัยคุกคามทางไซเบอร์",
+      "เบราว์เซอร์แฝงม้าโทรจัน",
+      "ภัยคุกคามต่อการรักษาความลับ (Confidentiality)",
+      "ประตูบานแรกสู่การเจาะระบบข้อมูลภายในองค์กร"
+    ],
+    "explanation": "จากตารางเปรียบเทียบภัยคุกคามหน้า 6: การส่งคำขอปลอมจำนวนมหาศาลเพื่อถล่มเครื่องเป้าหมาย จนเซิร์ฟเวอร์ตอบสนองไม่ไหว เรียกว่า Denial of Service (DoS)",
+    "memoryHook": "ส่งคำขอปลอมมหาศาลเพื่อถล่ม = DoS (ปฏิเสธการให้บริการ)",
+    "keywords": [
+      "คำขอปลอมจำนวนมหาศาล",
+      "ถล่มเครื่องเป้าหมาย",
+      "DoS"
+    ]
+  },
+  {
+    "id": 6,
+    "set": 1,
+    "setName": "ชุดที่ 1: พื้นฐานความปลอดภัยของเว็บและภัยคุกคาม (1.pdf)",
+    "category": "Web Security Fundamentals",
+    "question": "ความไม่ตระหนักถึงความเสี่ยงของผู้ใช้เว็บ",
+    "answer": "ผู้นั้น คือ เสี่ยง",
+    "choices": [
+      "ผู้นั้น คือ เสี่ยง",
+      "Web Security",
+      "85%+",
+      "ประตูบานแรกสู่การเจาะระบบข้อมูลภายในองค์กร",
+      "Denial of Service (DoS)",
+      "การสวมรอยเป็นผู้ใช้งานตัวจริง",
+      "ตัวอย่างของภัยคุกคามทางไซเบอร์",
+      "เบราว์เซอร์แฝงม้าโทรจัน",
+      "ภัยคุกคามต่อการรักษาความลับ (Confidentiality)",
+      "Phishing (ฟิชชิ่ง)"
+    ],
+    "explanation": "ประโยคเตือนใจในวิชาความปลอดภัยไซเบอร์: ผู้ใช้งานที่ไม่ตระหนักถึงความเสี่ยง ตัวของผู้ใช้นั้นเองคือความเสี่ยงที่น่ากลัวที่สุด",
+    "memoryHook": "'ความไม่ตระหนักถึงความเสี่ยง' = สัมพันธ์กับคำตอบคล้องจอง 'ผู้นั้น คือ เสี่ยง'",
+    "keywords": [
+      "ไม่ตระหนักถึงความเสี่ยง",
+      "ผู้นั้น คือ เสี่ยง"
+    ]
+  },
+  {
+    "id": 7,
+    "set": 1,
+    "setName": "ชุดที่ 1: พื้นฐานความปลอดภัยของเว็บและภัยคุกคาม (1.pdf)",
+    "category": "Web Security Fundamentals",
+    "question": "ภัยคุกคามต่อความถูกต้องสมบูรณ์ (Integrity)",
+    "answer": "เบราว์เซอร์แฝงม้าโทรจัน",
+    "choices": [
+      "เบราว์เซอร์แฝงม้าโทรจัน",
+      "ภัยคุกคามต่อการรักษาความลับ (Confidentiality)",
+      "การสวมรอยเป็นผู้ใช้งานตัวจริง",
+      "Denial of Service (DoS)",
+      "Phishing (ฟิชชิ่ง)",
+      "Web Security",
+      "85%+",
+      "ผู้นั้น คือ เสี่ยง",
+      "ตัวอย่างของภัยคุกคามทางไซเบอร์",
+      "ประตูบานแรกสู่การเจาะระบบข้อมูลภายในองค์กร"
+    ],
+    "explanation": "ตารางเปรียบเทียบภัยคุกคามสไลด์หน้า 6 ระบุว่าภัยต่อความถูกต้องสมบูรณ์ (Integrity) ได้แก่ การดัดแปลงแก้ไขข้อมูล, เบราว์เซอร์แฝงม้าโทรจัน, การดัดแปลงข้อมูลในหน่วยความจำ",
+    "memoryHook": "Integrity (ความถูกต้องสมบูรณ์) -> เสียเพราะ 'เบราว์เซอร์แฝงม้าโทรจัน' มาแอบแก้ข้อมูล",
+    "keywords": [
+      "Integrity",
+      "ความถูกต้องสมบูรณ์",
+      "เบราว์เซอร์แฝงม้าโทรจัน"
+    ]
+  },
+  {
+    "id": 8,
+    "set": 1,
+    "setName": "ชุดที่ 1: พื้นฐานความปลอดภัยของเว็บและภัยคุกคาม (1.pdf)",
+    "category": "Web Security Fundamentals",
+    "question": "การขโมยข้อมูลจากเซิร์ฟเวอร์หรือเครื่องฝั่งผู้ใช้",
+    "answer": "ภัยคุกคามต่อการรักษาความลับ (Confidentiality)",
+    "choices": [
+      "ภัยคุกคามต่อการรักษาความลับ (Confidentiality)",
+      "เบราว์เซอร์แฝงม้าโทรจัน",
+      "การสวมรอยเป็นผู้ใช้งานตัวจริง",
+      "Denial of Service (DoS)",
+      "Phishing (ฟิชชิ่ง)",
+      "Web Security",
+      "85%+",
+      "ผู้นั้น คือ เสี่ยง",
+      "ตัวอย่างของภัยคุกคามทางไซเบอร์",
+      "ประตูบานแรกสู่การเจาะระบบข้อมูลภายในองค์กร"
+    ],
+    "explanation": "ตารางสไลด์หน้า 6: การขโมยข้อมูลบนเซิร์ฟเวอร์, ขโมยข้อมูลจาก Client หรือการดักฟังข้อมูล ส่งผลให้สูญเสียข้อมูลสำคัญและความเป็นส่วนตัว จึงเป็นภัยต่อ Confidentiality",
+    "memoryHook": "การขโมย/ดักฟังข้อมูล = ทำลาย 'ความลับ' (Confidentiality)",
+    "keywords": [
+      "ขโมยข้อมูล",
+      "การรักษาความลับ",
+      "Confidentiality"
+    ]
+  },
+  {
+    "id": 9,
+    "set": 1,
+    "setName": "ชุดที่ 1: พื้นฐานความปลอดภัยของเว็บและภัยคุกคาม (1.pdf)",
+    "category": "Web Security Fundamentals",
+    "question": "ภัยคุกคามต่อการพิสูจน์ตัวตน (Authentication)",
+    "answer": "การสวมรอยเป็นผู้ใช้งานตัวจริง",
+    "choices": [
+      "การสวมรอยเป็นผู้ใช้งานตัวจริง",
+      "ภัยคุกคามต่อการรักษาความลับ (Confidentiality)",
+      "เบราว์เซอร์แฝงม้าโทรจัน",
+      "Denial of Service (DoS)",
+      "Phishing (ฟิชชิ่ง)",
+      "Web Security",
+      "85%+",
+      "ผู้นั้น คือ เสี่ยง",
+      "ตัวอย่างของภัยคุกคามทางไซเบอร์",
+      "ประตูบานแรกสู่การเจาะระบบข้อมูลภายในองค์กร"
+    ],
+    "explanation": "ตารางสไลด์หน้า 6: ภัยคุกคามด้าน Authentication คือ การสวมรอยเป็นผู้ใช้งานตัวจริง (Impersonation) และการปลอมแปลงข้อมูล (Data Forgery)",
+    "memoryHook": "Authentication (ตรวจว่าใช่ตัวจริงไหม) พังเพราะ 'การสวมรอยเป็นผู้ใช้งานตัวจริง'",
+    "keywords": [
+      "Authentication",
+      "พิสูจน์ตัวตน",
+      "การสวมรอยเป็นผู้ใช้งานตัวจริง"
+    ]
+  },
+  {
+    "id": 10,
+    "set": 1,
+    "setName": "ชุดที่ 1: พื้นฐานความปลอดภัยของเว็บและภัยคุกคาม (1.pdf)",
+    "category": "Web Security Fundamentals",
+    "question": "การหลอกลวงผ่านอีเมลหรือหน้าเว็บปลอมเพื่อขโมยข้อมูล",
+    "answer": "Phishing (ฟิชชิ่ง)",
+    "choices": [
+      "Phishing (ฟิชชิ่ง)",
+      "Denial of Service (DoS)",
+      "การสวมรอยเป็นผู้ใช้งานตัวจริง",
+      "เบราว์เซอร์แฝงม้าโทรจัน",
+      "Web Security",
+      "85%+",
+      "ผู้นั้น คือ เสี่ยง",
+      "ตัวอย่างของภัยคุกคามทางไซเบอร์",
+      "ภัยคุกคามต่อการรักษาความลับ (Confidentiality)",
+      "ประตูบานแรกสู่การเจาะระบบข้อมูลภายในองค์กร"
+    ],
+    "explanation": "Phishing เป็นเทคนิควิศวกรรมสังคม (Social Engineering) ที่สร้างอีเมลหรือหน้าเว็บเลียนแบบของจริงเพื่อตกเบ็ดเอาชื่อผู้ใช้ รหัสผ่าน และเลขบัตรเครดิต",
+    "memoryHook": "หลอกส่งอีเมล/เว็บปลอม = 'Phishing (ฟิชชิ่ง ตกเบ็ดเหยื่อ)'",
+    "keywords": [
+      "หลอกลวงผ่านอีเมล",
+      "หน้าเว็บปลอม",
+      "Phishing",
+      "ฟิชชิ่ง"
+    ]
+  },
+  {
+    "id": 11,
+    "set": 2,
+    "setName": "ชุดที่ 2: มาตรการป้องกัน และโปรโตคอล SSL / TLS (1.pdf)",
+    "category": "SSL/TLS & Defenses",
+    "question": "มาตรการป้องกันภัยคุกคามด้านความถูกต้องสมบูรณ์",
+    "answer": "การใช้ผลรวมตรวจสอบเชิงรหัสลับ",
+    "choices": [
+      "การใช้ผลรวมตรวจสอบเชิงรหัสลับ",
+      "การเข้ารหัสลับข้อมูล (Encryption)",
+      "Digital Signatures และ Certificates",
+      "รูปแม่กุญแจบนเบราว์เซอร์",
+      "HTTPS",
+      "SSL (Secure Sockets Layer)",
+      "IETF",
+      "TLS (Transport Layer Security)",
+      "TCP",
+      "การเข้ารหัสข้อมูล (Encryption)"
+    ],
+    "explanation": "ตารางสไลด์หน้า 6 ช่อง Countermeasures ของ Integrity คือ 'การใช้ผลรวมตรวจสอบเชิงรหัสลับ (Cryptographic Checksums / Hash / MAC)' เพื่อตรวจว่าข้อมูลถูกแอบแก้หรือไม่",
+    "memoryHook": "เช็กความสมบูรณ์ (Integrity) -> ต้อง 'ใช้ผลรวมตรวจสอบ (Checksum/Hash)'",
+    "keywords": [
+      "ป้องกันความถูกต้องสมบูรณ์",
+      "ผลรวมตรวจสอบเชิงรหัสลับ",
+      "Checksum"
+    ]
+  },
+  {
+    "id": 12,
+    "set": 2,
+    "setName": "ชุดที่ 2: มาตรการป้องกัน และโปรโตคอล SSL / TLS (1.pdf)",
+    "category": "SSL/TLS & Defenses",
+    "question": "มาตรการป้องกันด้านการรักษาความลับข้อมูล",
+    "answer": "การเข้ารหัสลับข้อมูล (Encryption)",
+    "choices": [
+      "การเข้ารหัสลับข้อมูล (Encryption)",
+      "การใช้ผลรวมตรวจสอบเชิงรหัสลับ",
+      "Digital Signatures และ Certificates",
+      "รูปแม่กุญแจบนเบราว์เซอร์",
+      "HTTPS",
+      "SSL (Secure Sockets Layer)",
+      "IETF",
+      "TLS (Transport Layer Security)",
+      "TCP",
+      "การเข้ารหัสข้อมูล (Encryption)"
+    ],
+    "explanation": "ตารางสไลด์หน้า 6 ช่อง Countermeasures ของ Confidentiality คือ 'การเข้ารหัสลับข้อมูล (Encryption)' และการใช้เว็บพร็อกซี เพื่อไม่ให้คนแอบดักอ่านเข้าใจ",
+    "memoryHook": "รักษาความลับ (Confidentiality) -> ใช้ 'การเข้ารหัสลับข้อมูล (Encryption)'",
+    "keywords": [
+      "รักษาความลับข้อมูล",
+      "การเข้ารหัสลับข้อมูล",
+      "Encryption"
+    ]
+  },
+  {
+    "id": 13,
+    "set": 2,
+    "setName": "ชุดที่ 2: มาตรการป้องกัน และโปรโตคอล SSL / TLS (1.pdf)",
+    "category": "SSL/TLS & Defenses",
+    "question": "เทคนิคเชิงรหัสลับที่ใช้ในการพิสูจน์ตัวตน",
+    "answer": "Digital Signatures และ Certificates",
+    "choices": [
+      "Digital Signatures และ Certificates",
+      "การใช้ผลรวมตรวจสอบเชิงรหัสลับ",
+      "การเข้ารหัสลับข้อมูล (Encryption)",
+      "รูปแม่กุญแจบนเบราว์เซอร์",
+      "HTTPS",
+      "SSL (Secure Sockets Layer)",
+      "IETF",
+      "TLS (Transport Layer Security)",
+      "TCP",
+      "การเข้ารหัสข้อมูล (Encryption)"
+    ],
+    "explanation": "ตารางสไลด์หน้า 6 ช่อง Countermeasures ของ Authentication คือเทคนิค Cryptographic เช่น 'ลายเซ็นดิจิทัล (Digital Signatures)' และ 'ใบรับรองอิเล็กทรอนิกส์ (Certificates)'",
+    "memoryHook": "พิสูจน์ตัวตน = 'Digital Signatures และ Certificates (ลายเซ็นและใบรับรอง)'",
+    "keywords": [
+      "พิสูจน์ตัวตน",
+      "Digital Signatures",
+      "Certificates"
+    ]
+  },
+  {
+    "id": 14,
+    "set": 2,
+    "setName": "ชุดที่ 2: มาตรการป้องกัน และโปรโตคอล SSL / TLS (1.pdf)",
+    "category": "SSL/TLS & Defenses",
+    "question": "สัญลักษณ์ของการใช้งานเว็บผ่านโปรโตคอลที่ปลอดภัย",
+    "answer": "รูปแม่กุญแจบนเบราว์เซอร์",
+    "choices": [
+      "รูปแม่กุญแจบนเบราว์เซอร์",
+      "HTTPS",
+      "การใช้ผลรวมตรวจสอบเชิงรหัสลับ",
+      "Digital Signatures และ Certificates",
+      "การเข้ารหัสลับข้อมูล (Encryption)",
+      "SSL (Secure Sockets Layer)",
+      "IETF",
+      "TLS (Transport Layer Security)",
+      "TCP",
+      "การเข้ารหัสข้อมูล (Encryption)"
+    ],
+    "explanation": "สไลด์หน้า 11 ระบุว่าการใช้งาน HTTPS จะแสดง 'สัญลักษณ์รูปแม่กุญแจบนเบราว์เซอร์' เพื่อบ่งบอกว่าเว็บไซต์นี้มี TLS ดูแลความปลอดภัยอยู่",
+    "memoryHook": "คำว่า 'สัญลักษณ์บนเบราว์เซอร์' = 'รูปแม่กุญแจบนเบราว์เซอร์'",
+    "keywords": [
+      "สัญลักษณ์",
+      "ปลอดภัย",
+      "รูปแม่กุญแจบนเบราว์เซอร์"
+    ]
+  },
+  {
+    "id": 15,
+    "set": 2,
+    "setName": "ชุดที่ 2: มาตรการป้องกัน และโปรโตคอล SSL / TLS (1.pdf)",
+    "category": "SSL/TLS & Defenses",
+    "question": "HTTP + SSL",
+    "answer": "HTTPS",
+    "choices": [
+      "HTTPS",
+      "รูปแม่กุญแจบนเบราว์เซอร์",
+      "SSL (Secure Sockets Layer)",
+      "TLS (Transport Layer Security)",
+      "การใช้ผลรวมตรวจสอบเชิงรหัสลับ",
+      "Digital Signatures และ Certificates",
+      "IETF",
+      "TCP",
+      "การเข้ารหัสลับข้อมูล (Encryption)",
+      "การเข้ารหัสข้อมูล (Encryption)"
+    ],
+    "explanation": "สไลด์หน้า 7 แสดงสมการภาพชัดเจน: HTTP (เว็บปกติ) + SSL/TLS (เลเยอร์ความปลอดภัย) = HTTPS (Secure HTTP)",
+    "memoryHook": "HTTP + SSL รวมกัน = 'HTTPS'",
+    "keywords": [
+      "HTTP + SSL",
+      "HTTPS"
+    ]
+  },
+  {
+    "id": 16,
+    "set": 2,
+    "setName": "ชุดที่ 2: มาตรการป้องกัน และโปรโตคอล SSL / TLS (1.pdf)",
+    "category": "SSL/TLS & Defenses",
+    "question": "พัฒนาโดย Netscape ในปี 1995 (ปัจจุบันเลิกใช้งานแล้ว)",
+    "answer": "SSL (Secure Sockets Layer)",
+    "choices": [
+      "SSL (Secure Sockets Layer)",
+      "TLS (Transport Layer Security)",
+      "IETF",
+      "HTTPS",
+      "TCP",
+      "รูปแม่กุญแจบนเบราว์เซอร์",
+      "Digital Signatures และ Certificates",
+      "การใช้ผลรวมตรวจสอบเชิงรหัสลับ",
+      "การเข้ารหัสลับข้อมูล (Encryption)",
+      "การเข้ารหัสข้อมูล (Encryption)"
+    ],
+    "explanation": "ตารางเปรียบเทียบหน้า 12: SSL พัฒนาขึ้นโดยบริษัท Netscape ในปี 1995 และปัจจุบันถูกยกเลิกการใช้งานเพราะล้าสมัยและมีช่องโหว่",
+    "memoryHook": "เห็น 'Netscape 1995 เลิกใช้แล้ว' = กา 'SSL' ตัวเก่าทันที",
+    "keywords": [
+      "Netscape",
+      "1995",
+      "เลิกใช้งานแล้ว",
+      "SSL"
+    ]
+  },
+  {
+    "id": 17,
+    "set": 2,
+    "setName": "ชุดที่ 2: มาตรการป้องกัน และโปรโตคอล SSL / TLS (1.pdf)",
+    "category": "SSL/TLS & Defenses",
+    "question": "หน่วยงานที่พัฒนาต่อยอดโปรโตคอล TLS",
+    "answer": "IETF",
+    "choices": [
+      "IETF",
+      "SSL (Secure Sockets Layer)",
+      "TLS (Transport Layer Security)",
+      "HTTPS",
+      "TCP",
+      "รูปแม่กุญแจบนเบราว์เซอร์",
+      "Digital Signatures และ Certificates",
+      "การใช้ผลรวมตรวจสอบเชิงรหัสลับ",
+      "การเข้ารหัสลับข้อมูล (Encryption)",
+      "การเข้ารหัสข้อมูล (Encryption)"
+    ],
+    "explanation": "สไลด์หน้า 10 และ 12: TLS working group ก่อตั้งและพัฒนาต่อยอดโดย Internet Engineering Task Force (IETF)",
+    "memoryHook": "องค์กร 4 ตัวอักษรผู้สร้าง TLS = 'IETF'",
+    "keywords": [
+      "หน่วยงาน",
+      "พัฒนาต่อยอด TLS",
+      "IETF"
+    ]
+  },
+  {
+    "id": 18,
+    "set": 2,
+    "setName": "ชุดที่ 2: มาตรการป้องกัน และโปรโตคอล SSL / TLS (1.pdf)",
+    "category": "SSL/TLS & Defenses",
+    "question": "โปรโตคอลที่เป็นมาตรฐานความปลอดภัยในปัจจุบัน",
+    "answer": "TLS (Transport Layer Security)",
+    "choices": [
+      "TLS (Transport Layer Security)",
+      "SSL (Secure Sockets Layer)",
+      "IETF",
+      "HTTPS",
+      "TCP",
+      "รูปแม่กุญแจบนเบราว์เซอร์",
+      "Digital Signatures และ Certificates",
+      "การใช้ผลรวมตรวจสอบเชิงรหัสลับ",
+      "การเข้ารหัสลับข้อมูล (Encryption)",
+      "การเข้ารหัสข้อมูล (Encryption)"
+    ],
+    "explanation": "สไลด์หน้า 12: TLS (Transport Layer Security) เป็นเวอร์ชันใหม่ที่เข้ามาแทนที่ SSL และเป็นมาตรฐานความปลอดภัยสากลในปัจจุบัน (ปัจจุบันคือ TLS 1.3)",
+    "memoryHook": "มาตรฐานความปลอดภัย 'ในปัจจุบัน' = 'TLS' (จำ: ปัจจุบันใช้ T-L-S)",
+    "keywords": [
+      "มาตรฐานปัจจุบัน",
+      "TLS",
+      "Transport Layer Security"
+    ]
+  },
+  {
+    "id": 19,
+    "set": 2,
+    "setName": "ชุดที่ 2: มาตรการป้องกัน และโปรโตคอล SSL / TLS (1.pdf)",
+    "category": "SSL/TLS & Defenses",
+    "question": "โปรโตคอลใน Transport Layer ที่ SSL/TLS เลือกใช้",
+    "answer": "TCP",
+    "choices": [
+      "TCP",
+      "TLS (Transport Layer Security)",
+      "SSL (Secure Sockets Layer)",
+      "IETF",
+      "HTTPS",
+      "รูปแม่กุญแจบนเบราว์เซอร์",
+      "Digital Signatures และ Certificates",
+      "การใช้ผลรวมตรวจสอบเชิงรหัสลับ",
+      "การเข้ารหัสลับข้อมูล (Encryption)",
+      "การเข้ารหัสข้อมูล (Encryption)"
+    ],
+    "explanation": "สไลด์หน้า 10: SSL และ TLS ใช้ TCP (Transmission Control Protocol) เพื่อการสื่อสารแบบ reliable end-to-end communication",
+    "memoryHook": "SSL/TLS อาศัยความน่าเชื่อถือของโปรโตคอล Transport Layer ที่ชื่อ 'TCP'",
+    "keywords": [
+      "Transport Layer",
+      "SSL/TLS เลือกใช้",
+      "TCP"
+    ]
+  },
+  {
+    "id": 20,
+    "set": 2,
+    "setName": "ชุดที่ 2: มาตรการป้องกัน และโปรโตคอล SSL / TLS (1.pdf)",
+    "category": "SSL/TLS & Defenses",
+    "question": "หน้าที่หลักของ TLS ในการป้องกันการดักฟังข้อมูล",
+    "answer": "การเข้ารหัสข้อมูล (Encryption)",
+    "choices": [
+      "การเข้ารหัสข้อมูล (Encryption)",
+      "การใช้ผลรวมตรวจสอบเชิงรหัสลับ",
+      "Digital Signatures และ Certificates",
+      "รูปแม่กุญแจบนเบราว์เซอร์",
+      "HTTPS",
+      "SSL (Secure Sockets Layer)",
+      "IETF",
+      "TLS (Transport Layer Security)",
+      "TCP",
+      "การเข้ารหัสลับข้อมูล (Encryption)"
+    ],
+    "explanation": "สไลด์หน้า 9: หน้าที่หลักของ TLS ด้านการเข้ารหัสข้อมูล (Encryption) คือการแปลงข้อมูลให้อ่านไม่ออก หากมีคนดักจับได้ระหว่างทางก็จะไม่รู้ว่าเป็นข้อความอะไร",
+    "memoryHook": "ป้องกัน 'การดักฟัง' = ต้อง 'เข้ารหัสข้อมูล (Encryption)' ให้อ่านไม่ออก",
+    "keywords": [
+      "หน้าที่หลัก TLS",
+      "ป้องกันการดักฟัง",
+      "การเข้ารหัสข้อมูล"
+    ]
+  },
+  {
+    "id": 21,
+    "set": 3,
+    "setName": "ชุดที่ 3: สถาปัตยกรรม SSL และ Session/Connection (1.pdf)",
+    "category": "SSL Architecture & Handshake",
+    "question": "จำนวนชั้นของสถาปัตยกรรมโปรโตคอล SSL",
+    "answer": "โปรโตคอล 2 ชั้น (Two-layer protocol)",
+    "choices": [
+      "โปรโตคอล 2 ชั้น (Two-layer protocol)",
+      "SSL session",
+      "SSL connection",
+      "Master secret (48 byte secret)",
+      "Server and Client random",
+      "SSL Record Protocol",
+      "IDEA, 3DES, RC4",
+      "Handshake Protocol",
+      "Client_hello",
+      "การยืนยันตัวตนแบบหลายปัจจัย (MFA)"
+    ],
+    "explanation": "สไลด์หน้า 13 ระบุว่า 'SSL is a two-layer protocol not a just single protocol' (มีชั้นบนคือ Handshake/Alert/ChangeCipherSpec และชั้นล่างคือ Record Protocol)",
+    "memoryHook": "ถาม 'จำนวนชั้นของ SSL' ตอบ 'โปรโตคอล 2 ชั้น (Two-layer)'",
+    "keywords": [
+      "จำนวนชั้น",
+      "สถาปัตยกรรม SSL",
+      "โปรโตคอล 2 ชั้น"
+    ]
+  },
+  {
+    "id": 22,
+    "set": 3,
+    "setName": "ชุดที่ 3: สถาปัตยกรรม SSL และ Session/Connection (1.pdf)",
+    "category": "SSL Architecture & Handshake",
+    "question": "ความสัมพันธ์ระหว่าง Client และ Server ที่สร้างโดย Handshake",
+    "answer": "SSL session",
+    "choices": [
+      "SSL session",
+      "SSL connection",
+      "โปรโตคอล 2 ชั้น (Two-layer protocol)",
+      "Master secret (48 byte secret)",
+      "Server and Client random",
+      "SSL Record Protocol",
+      "IDEA, 3DES, RC4",
+      "Handshake Protocol",
+      "Client_hello",
+      "การยืนยันตัวตนแบบหลายปัจจัย (MFA)"
+    ],
+    "explanation": "สไลด์หน้า 14: SSL session คือ an association between client & server created by the Handshake Protocol กำหนดชุดพารามิเตอร์การเข้ารหัสลับ และสามารถแชร์ให้หลาย Connection ได้",
+    "memoryHook": "ความสัมพันธ์หลักระยะยาวสร้างโดย Handshake = 'SSL session'",
+    "keywords": [
+      "ความสัมพันธ์ Client และ Server",
+      "สร้างโดย Handshake",
+      "SSL session"
+    ]
+  },
+  {
+    "id": 23,
+    "set": 3,
+    "setName": "ชุดที่ 3: สถาปัตยกรรม SSL และ Session/Connection (1.pdf)",
+    "category": "SSL Architecture & Handshake",
+    "question": "ลิงก์การสื่อสารแบบชั่วคราว (Transient), Peer-to-Peer",
+    "answer": "SSL connection",
+    "choices": [
+      "SSL connection",
+      "SSL session",
+      "โปรโตคอล 2 ชั้น (Two-layer protocol)",
+      "Master secret (48 byte secret)",
+      "Server and Client random",
+      "SSL Record Protocol",
+      "IDEA, 3DES, RC4",
+      "Handshake Protocol",
+      "Client_hello",
+      "การยืนยันตัวตนแบบหลายปัจจัย (MFA)"
+    ],
+    "explanation": "สไลด์หน้า 14: SSL connection คือ a transient (ชั่วคราว), peer-to-peer, communications link ซึ่งผูกอยู่กับ SSL session 1 session",
+    "memoryHook": "เห็นคำว่า 'ชั่วคราว (Transient)' หรือ 'Peer-to-Peer' = 'SSL connection'",
+    "keywords": [
+      "ชั่วคราว",
+      "Transient",
+      "Peer-to-Peer",
+      "SSL connection"
+    ]
+  },
+  {
+    "id": 24,
+    "set": 3,
+    "setName": "ชุดที่ 3: สถาปัตยกรรม SSL และ Session/Connection (1.pdf)",
+    "category": "SSL Architecture & Handshake",
+    "question": "ข้อมูลรหัสลับแชร์ระหว่าง Client/Server ในระดับ Session",
+    "answer": "Master secret (48 byte secret)",
+    "choices": [
+      "Master secret (48 byte secret)",
+      "Server and Client random",
+      "SSL session",
+      "SSL connection",
+      "โปรโตคอล 2 ชั้น (Two-layer protocol)",
+      "SSL Record Protocol",
+      "IDEA, 3DES, RC4",
+      "Handshake Protocol",
+      "Client_hello",
+      "การยืนยันตัวตนแบบหลายปัจจัย (MFA)"
+    ],
+    "explanation": "สไลด์หน้า 15: Session ประกอบด้วยพารามิเตอร์สำคัญคือ 'Master secret: 48 byte secret shared between client and server'",
+    "memoryHook": "จำตัวเลข: 'รหัสลับระดับ Session ขนาด 48 byte' = 'Master secret'",
+    "keywords": [
+      "ระดับ Session",
+      "Master secret",
+      "48 byte secret"
+    ]
+  },
+  {
+    "id": 25,
+    "set": 3,
+    "setName": "ชุดที่ 3: สถาปัตยกรรม SSL และ Session/Connection (1.pdf)",
+    "category": "SSL Architecture & Handshake",
+    "question": "ข้อมูลสุ่ม (Random) เพื่อระบุตัวตนของการเชื่อมต่อ",
+    "answer": "Server and Client random",
+    "choices": [
+      "Server and Client random",
+      "Master secret (48 byte secret)",
+      "SSL session",
+      "SSL connection",
+      "โปรโตคอล 2 ชั้น (Two-layer protocol)",
+      "SSL Record Protocol",
+      "IDEA, 3DES, RC4",
+      "Handshake Protocol",
+      "Client_hello",
+      "การยืนยันตัวตนแบบหลายปัจจัย (MFA)"
+    ],
+    "explanation": "สไลด์หน้า 16: พารามิเตอร์ระดับ Connection กำหนดโดย 'Server and Client random to identify connection'",
+    "memoryHook": "ข้อมูลสุ่มเพื่อระบุตัวตน Connection = 'Server and Client random'",
+    "keywords": [
+      "ข้อมูลสุ่ม",
+      "Random",
+      "ระบุตัวตน Connection",
+      "Server and Client random"
+    ]
+  },
+  {
+    "id": 26,
+    "set": 3,
+    "setName": "ชุดที่ 3: สถาปัตยกรรม SSL และ Session/Connection (1.pdf)",
+    "category": "SSL Architecture & Handshake",
+    "question": "ทำหน้าที่บีบอัดข้อมูลและเข้ารหัสแบบสมมาตร (Symmetric)",
+    "answer": "SSL Record Protocol",
+    "choices": [
+      "SSL Record Protocol",
+      "Handshake Protocol",
+      "โปรโตคอล 2 ชั้น (Two-layer protocol)",
+      "SSL session",
+      "SSL connection",
+      "Master secret (48 byte secret)",
+      "Server and Client random",
+      "IDEA, 3DES, RC4",
+      "Client_hello",
+      "การยืนยันตัวตนแบบหลายปัจจัย (MFA)"
+    ],
+    "explanation": "สไลด์หน้า 17: SSL Record Protocol ให้บริการ Confidentiality โดยการบีบอัดข้อความก่อนแล้วเข้ารหัสแบบสมมาตร (Symmetric encryption)",
+    "memoryHook": "ทำหน้าที่บีบอัดและเข้ารหัสแพ็กเก็ตจริง = 'SSL Record Protocol'",
+    "keywords": [
+      "บีบอัดข้อมูล",
+      "เข้ารหัสแบบสมมาตร",
+      "SSL Record Protocol"
+    ]
+  },
+  {
+    "id": 27,
+    "set": 3,
+    "setName": "ชุดที่ 3: สถาปัตยกรรม SSL และ Session/Connection (1.pdf)",
+    "category": "SSL Architecture & Handshake",
+    "question": "อัลกอริทึมเข้ารหัสลับใน SSL Record Protocol",
+    "answer": "IDEA, 3DES, RC4",
+    "choices": [
+      "IDEA, 3DES, RC4",
+      "SSL Record Protocol",
+      "Handshake Protocol",
+      "โปรโตคอล 2 ชั้น (Two-layer protocol)",
+      "SSL session",
+      "SSL connection",
+      "Master secret (48 byte secret)",
+      "Server and Client random",
+      "Client_hello",
+      "การยืนยันตัวตนแบบหลายปัจจัย (MFA)"
+    ],
+    "explanation": "สไลด์หน้า 17: อัลกอริทึมเข้ารหัสแบบสมมาตรที่ใช้ใน Record Protocol เช่น IDEA, RC2-40, DES-40, DES, 3DES, RC4-128",
+    "memoryHook": "รวมชื่ออัลกอริทึมเข้ารหัสโบราณ 3 ตัว = 'IDEA, 3DES, RC4'",
+    "keywords": [
+      "อัลกอริทึมเข้ารหัสลับ",
+      "IDEA",
+      "3DES",
+      "RC4"
+    ]
+  },
+  {
+    "id": 28,
+    "set": 3,
+    "setName": "ชุดที่ 3: สถาปัตยกรรม SSL และ Session/Connection (1.pdf)",
+    "category": "SSL Architecture & Handshake",
+    "question": "กระบวนการเจรจา ตกลงเงื่อนไข และตรวจสอบตัวตนเบื้องต้น",
+    "answer": "Handshake Protocol",
+    "choices": [
+      "Handshake Protocol",
+      "SSL Record Protocol",
+      "โปรโตคอล 2 ชั้น (Two-layer protocol)",
+      "SSL session",
+      "SSL connection",
+      "Master secret (48 byte secret)",
+      "Server and Client random",
+      "IDEA, 3DES, RC4",
+      "Client_hello",
+      "การยืนยันตัวตนแบบหลายปัจจัย (MFA)"
+    ],
+    "explanation": "สไลด์หน้า 19: Handshake Protocol (โปรโตคอลจับมือ) คือกระบวนการเตรียมความพร้อมหรือ 'การทักทาย' ตรวจสอบตัวตน ตกลงเงื่อนไขและคีย์ก่อนเริ่มส่งข้อมูล",
+    "memoryHook": "เจรจา ตกลงเงื่อนไข ทักทาย = 'Handshake Protocol (การจับมือ)'",
+    "keywords": [
+      "เจรจา",
+      "ตกลงเงื่อนไข",
+      "ตรวจสอบตัวตน",
+      "Handshake Protocol"
+    ]
+  },
+  {
+    "id": 29,
+    "set": 3,
+    "setName": "ชุดที่ 3: สถาปัตยกรรม SSL และ Session/Connection (1.pdf)",
+    "category": "SSL Architecture & Handshake",
+    "question": "คำสั่งแรกสุดที่ส่งจากฝั่งผู้ใช้ใน Handshake Protocol",
+    "answer": "Client_hello",
+    "choices": [
+      "Client_hello",
+      "Handshake Protocol",
+      "SSL Record Protocol",
+      "โปรโตคอล 2 ชั้น (Two-layer protocol)",
+      "SSL session",
+      "SSL connection",
+      "Master secret (48 byte secret)",
+      "Server and Client random",
+      "IDEA, 3DES, RC4",
+      "การยืนยันตัวตนแบบหลายปัจจัย (MFA)"
+    ],
+    "explanation": "สไลด์หน้า 20: Phase 1 ของ Handshake Protocol เริ่มต้นด้วยคำสั่งที่ Client ส่งไปทักทาย Server คือ 'client_hello'",
+    "memoryHook": "คำสั่งแรกสุดทักทายจากผู้ใช้ = 'Client_hello' (ลูกค้าทักว่า Hello)",
+    "keywords": [
+      "คำสั่งแรกสุด",
+      "ส่งจากฝั่งผู้ใช้",
+      "Client_hello"
+    ]
+  },
+  {
+    "id": 30,
+    "set": 3,
+    "setName": "ชุดที่ 3: สถาปัตยกรรม SSL และ Session/Connection (1.pdf)",
+    "category": "SSL Architecture & Handshake",
+    "question": "การบังคับใช้รหัสผ่านร่วมกับรหัส OTP เพื่อความปลอดภัย",
+    "answer": "การยืนยันตัวตนแบบหลายปัจจัย (MFA)",
+    "choices": [
+      "การยืนยันตัวตนแบบหลายปัจจัย (MFA)",
+      "Client_hello",
+      "Handshake Protocol",
+      "SSL Record Protocol",
+      "โปรโตคอล 2 ชั้น (Two-layer protocol)",
+      "SSL session",
+      "SSL connection",
+      "Master secret (48 byte secret)",
+      "Server and Client random",
+      "IDEA, 3DES, RC4"
+    ],
+    "explanation": "สไลด์หน้า 21: แนวทางปฏิบัติที่ดีระบุว่า การยืนยันตัวตนแบบหลายปัจจัย (Multi-Factor Authentication - MFA) เช่น การใช้รหัสผ่านร่วมกับรหัส OTP เพื่อป้องกันการเจาะระบบ",
+    "memoryHook": "รหัสผ่าน + OTP สองชั้นขึ้นไป = 'การยืนยันตัวตนแบบหลายปัจจัย (MFA)'",
+    "keywords": [
+      "รหัสผ่านร่วมกับ OTP",
+      "MFA",
+      "การยืนยันตัวตนแบบหลายปัจจัย"
+    ]
+  },
+  {
+    "id": 31,
+    "set": 4,
+    "setName": "ชุดที่ 4: มัลแวร์และไวรัสคอมพิวเตอร์ (2.ppt)",
+    "category": "Malicious Software",
+    "question": "โปรแกรมคอมพิวเตอร์ตัวแรกที่มีรูปแบบของไวรัส เกิดขึ้นเมื่อปี พ.ศ. 2505 โดยทีมวิศวกร Bell Telephone",
+    "answer": "Core War (ต้นกำเนิดไวรัส)",
+    "choices": [
+      "Core War (ต้นกำเนิดไวรัส)",
+      "ไวรัสเบรน (Brain)",
+      "Morris Worm",
+      "ม้าโทรจัน (Trojan Horse)",
+      "Logic Bomb",
+      "Trapdoor / Backdoor",
+      "Bacteria / Rabbit",
+      "Polymorphic Viruses",
+      "Macro Viruses",
+      "Stealth Viruses"
+    ],
+    "explanation": "สไลด์ 2.ppt หน้า 6: ประวัติสำคัญเกี่ยวกับไวรัสคอมพิวเตอร์ตัวแรกเกิดขึ้นปี พ.ศ. 2505 โดยทีมวิศวกร Bell Telephone Labs ในรูปแบบเกมสงครามโปรแกรม (Core War)",
+    "memoryHook": "ไวรัสปี พ.ศ. 2505 โดยวิศวกร Bell Telephone = 'Core War'",
+    "keywords": [
+      "2505",
+      "Bell Telephone",
+      "ไวรัสตัวแรก"
+    ]
+  },
+  {
+    "id": 32,
+    "set": 4,
+    "setName": "ชุดที่ 4: มัลแวร์และไวรัสคอมพิวเตอร์ (2.ppt)",
+    "category": "Malicious Software",
+    "question": "ไวรัสคอมพิวเตอร์ตัวแรกที่ทำงานบนเครื่อง PC แพร่กระจายผ่านฟล็อปปี้ดิสก์ในปี พ.ศ. 2529",
+    "answer": "ไวรัสเบรน (Brain)",
+    "choices": [
+      "ไวรัสเบรน (Brain)",
+      "Core War (ต้นกำเนิดไวรัส)",
+      "Morris Worm",
+      "ม้าโทรจัน (Trojan Horse)",
+      "Logic Bomb",
+      "Trapdoor / Backdoor",
+      "Bacteria / Rabbit",
+      "Polymorphic Viruses",
+      "Macro Viruses",
+      "Stealth Viruses"
+    ],
+    "explanation": "สไลด์ 2.ppt หน้า 6: ไวรัสบนเครื่อง PC ตัวแรกของโลกเกิดขึ้นในปี พ.ศ. 2529 มีชื่อว่า 'เบรน (Brain)' เขียนโดยสองพี่น้องชาวปากีสถาน",
+    "memoryHook": "ไวรัส PC ตัวแรกปี 2529 = 'ไวรัสเบรน (Brain สมอง)'",
+    "keywords": [
+      "PC ตัวแรก",
+      "2529",
+      "ฟล็อปปี้ดิสก์",
+      "เบรน",
+      "Brain"
+    ]
+  },
+  {
+    "id": 33,
+    "set": 4,
+    "setName": "ชุดที่ 4: มัลแวร์และไวรัสคอมพิวเตอร์ (2.ppt)",
+    "category": "Malicious Software",
+    "question": "โปรแกรมอันตรายที่ทำซ้ำตัวเองเรื่อยๆ จนเต็มพื้นที่ดิสก์หรือใช้รอบ CPU ทั้งหมด",
+    "answer": "Bacteria / Rabbit",
+    "choices": [
+      "Bacteria / Rabbit",
+      "ไวรัสเบรน (Brain)",
+      "Core War (ต้นกำเนิดไวรัส)",
+      "Morris Worm",
+      "ม้าโทรจัน (Trojan Horse)",
+      "Logic Bomb",
+      "Trapdoor / Backdoor",
+      "Polymorphic Viruses",
+      "Macro Viruses",
+      "Stealth Viruses"
+    ],
+    "explanation": "สไลด์ 2.ppt หน้า 7: นิยามของ Bacteria (หรือ Rabbit) คือโปรแกรมอันตรายที่จำลองทำซ้ำตัวเองอย่างบ้าคลั่งจนเต็มความจุดิสก์หรือรอบการประมวลผลของ CPU",
+    "memoryHook": "แพร่พันธุ์เร็วเหมือนแบคทีเรีย/กระต่ายจนเต็มเครื่อง = 'Bacteria / Rabbit'",
+    "keywords": [
+      "ทำซ้ำตัวเอง",
+      "เต็มพื้นที่ดิสก์",
+      "เต็มรอบ CPU",
+      "Bacteria"
+    ]
+  },
+  {
+    "id": 34,
+    "set": 4,
+    "setName": "ชุดที่ 4: มัลแวร์และไวรัสคอมพิวเตอร์ (2.ppt)",
+    "category": "Malicious Software",
+    "question": "โปรแกรมที่หลอกลวงให้ผู้ใช้คิดว่าเป็นสิ่งที่มีประโยชน์แต่เบื้องหลังแอบขโมยข้อมูลหรือสร้างความเสียหาย",
+    "answer": "ม้าโทรจัน (Trojan Horse)",
+    "choices": [
+      "ม้าโทรจัน (Trojan Horse)",
+      "Bacteria / Rabbit",
+      "ไวรัสเบรน (Brain)",
+      "Core War (ต้นกำเนิดไวรัส)",
+      "Morris Worm",
+      "Logic Bomb",
+      "Trapdoor / Backdoor",
+      "Polymorphic Viruses",
+      "Macro Viruses",
+      "Stealth Viruses"
+    ],
+    "explanation": "สไลด์ 2.ppt หน้า 8 และ 13: Trojan Horse ทำตัวเหมือนโปรแกรมธรรมดาทั่วไปเพื่อหลอกล่อให้ผู้ใช้รัน แล้วแอบส่งข้อมูล/รหัสผ่านกลับไปให้ผู้โจมตี",
+    "memoryHook": "แกล้งทำตัวเป็นของดีแต่แฝงภัยร้ายเหมือนม้าไม้เมืองทรอย = 'ม้าโทรจัน (Trojan Horse)'",
+    "keywords": [
+      "หลอกลวง",
+      "ดูเหมือนมีประโยชน์",
+      "ม้าโทรจัน",
+      "Trojan Horse"
+    ]
+  },
+  {
+    "id": 35,
+    "set": 4,
+    "setName": "ชุดที่ 4: มัลแวร์และไวรัสคอมพิวเตอร์ (2.ppt)",
+    "category": "Malicious Software",
+    "question": "คำสั่งแฝงในโปรแกรมที่จะทำงานทำลายข้อมูลเมื่อเกิดเงื่อนไขที่กำหนดไว้ล่วงหน้า (เช่น วันที่ หรือการกดปุ่ม)",
+    "answer": "Logic Bomb",
+    "choices": [
+      "Logic Bomb",
+      "ม้าโทรจัน (Trojan Horse)",
+      "Bacteria / Rabbit",
+      "ไวรัสเบรน (Brain)",
+      "Core War (ต้นกำเนิดไวรัส)",
+      "Morris Worm",
+      "Trapdoor / Backdoor",
+      "Polymorphic Viruses",
+      "Macro Viruses",
+      "Stealth Viruses"
+    ],
+    "explanation": "สไลด์ 2.ppt หน้า 8: Logic Bomb (ระเบิดเงื่อนไขลอจิก) คือโค้ดที่ซ่อนอยู่ในโปรแกรมดี โดยรอเงื่อนไขเฉพาะเจาะจงเกิดขึ้นแล้วจะจุดชนวนสร้างความเสียหาย",
+    "memoryHook": "รอเงื่อนไขตามตรรกะแล้วระเบิดทำงาน = 'Logic Bomb (ระเบิดเวลา/ระเบิดเงื่อนไข)'",
+    "keywords": [
+      "คำสั่งแฝง",
+      "เงื่อนไขล่วงหน้า",
+      "Logic Bomb"
+    ]
+  },
+  {
+    "id": 36,
+    "set": 4,
+    "setName": "ชุดที่ 4: มัลแวร์และไวรัสคอมพิวเตอร์ (2.ppt)",
+    "category": "Malicious Software",
+    "question": "จุดเข้าใช้งานระบบที่ไม่ได้เขียนเอกสารไว้ สร้างไว้เพื่อการดีบักแต่เปิดช่องให้ผู้ไม่หวังดีแอบเข้าสู่ระบบ",
+    "answer": "Trapdoor / Backdoor",
+    "choices": [
+      "Trapdoor / Backdoor",
+      "Logic Bomb",
+      "ม้าโทรจัน (Trojan Horse)",
+      "Bacteria / Rabbit",
+      "ไวรัสเบรน (Brain)",
+      "Core War (ต้นกำเนิดไวรัส)",
+      "Morris Worm",
+      "Polymorphic Viruses",
+      "Macro Viruses",
+      "Stealth Viruses"
+    ],
+    "explanation": "สไลด์ 2.ppt หน้า 8: Trap Door หรือ Back Door คือจุดเข้าใช้งานระบบลับๆ ที่โปรแกรมเมอร์เขียนทิ้งไว้เพื่อดีบัก แต่กลายเป็นประตูหลังให้แฮกเกอร์ใช้แอบเข้าได้",
+    "memoryHook": "ประตูบานลับไม่มีเอกสารสร้างไว้ตอนดีบัก = 'Trap Door / Back Door (ประตูกับดัก)'",
+    "keywords": [
+      "ไม่มีเอกสาร",
+      "การดีบัก",
+      "Trap Door",
+      "Back Door"
+    ]
+  },
+  {
+    "id": 37,
+    "set": 4,
+    "setName": "ชุดที่ 4: มัลแวร์และไวรัสคอมพิวเตอร์ (2.ppt)",
+    "category": "Malicious Software",
+    "question": "หนอนอินเทอร์เน็ตตัวแรกของโลกที่แพร่กระจายผ่านระบบเครือข่ายในปี ค.ศ. 1988",
+    "answer": "Morris Worm",
+    "choices": [
+      "Morris Worm",
+      "Trapdoor / Backdoor",
+      "Logic Bomb",
+      "ม้าโทรจัน (Trojan Horse)",
+      "Bacteria / Rabbit",
+      "ไวรัสเบรน (Brain)",
+      "Core War (ต้นกำเนิดไวรัส)",
+      "Polymorphic Viruses",
+      "Macro Viruses",
+      "Stealth Viruses"
+    ],
+    "explanation": "สไลด์ 2.ppt หน้า 20: Morris Worm ถูกปล่อยในปี 1988 โดย Robert Tappan Morris ถือเป็นหนอนอินเทอร์เน็ตตัวแรกที่สร้างความเสียหายอย่างกว้างขวางบนระบบเครือข่าย",
+    "memoryHook": "หนอนเครือข่ายตัวแรกปี 1988 = 'Morris Worm'",
+    "keywords": [
+      "หนอนอินเทอร์เน็ตตัวแรก",
+      "1988",
+      "Morris Worm"
+    ]
+  },
+  {
+    "id": 38,
+    "set": 4,
+    "setName": "ชุดที่ 4: มัลแวร์และไวรัสคอมพิวเตอร์ (2.ppt)",
+    "category": "Malicious Software",
+    "question": "ไวรัสที่มีความสามารถในการแปรเปลี่ยนรูปโค้ดของตัวเองทุกครั้งที่สร้างสำเนา ทำให้โปรแกรมสแกนตรวจจับได้ยาก",
+    "answer": "Polymorphic Viruses",
+    "choices": [
+      "Polymorphic Viruses",
+      "Morris Worm",
+      "Trapdoor / Backdoor",
+      "Logic Bomb",
+      "ม้าโทรจัน (Trojan Horse)",
+      "Bacteria / Rabbit",
+      "ไวรัสเบรน (Brain)",
+      "Core War (ต้นกำเนิดไวรัส)",
+      "Macro Viruses",
+      "Stealth Viruses"
+    ],
+    "explanation": "สไลด์ 2.ppt หน้า 16: โพลีมอร์ฟิกไวรัส (Polymorphic Viruses) คือไวรัสที่แปลงร่าง/เปลี่ยนโครงสร้างตัวเองได้หลายร้อยรูปแบบเมื่อสำเนาตัว ทำให้สแกนเนอร์จับลายเซ็นเดิมไม่ได้",
+    "memoryHook": "Poly (หลาย) + Morph (รูปทรง) = 'Polymorphic Viruses (ไวรัสเปลี่ยนรูป)'",
+    "keywords": [
+      "แปรเปลี่ยนตัวเอง",
+      "หลายร้อยรูปแบบ",
+      "Polymorphic"
+    ]
+  },
+  {
+    "id": 39,
+    "set": 4,
+    "setName": "ชุดที่ 4: มัลแวร์และไวรัสคอมพิวเตอร์ (2.ppt)",
+    "category": "Malicious Software",
+    "question": "ไวรัสที่มีความสามารถพรางตัว เช่น หลอกให้ระบบเห็นว่าขนาดของไฟล์โปรแกรมที่ติดเชื้อไม่ได้ใหญ่ขึ้น",
+    "answer": "Stealth Viruses",
+    "choices": [
+      "Stealth Viruses",
+      "Polymorphic Viruses",
+      "Morris Worm",
+      "Trapdoor / Backdoor",
+      "Logic Bomb",
+      "ม้าโทรจัน (Trojan Horse)",
+      "Bacteria / Rabbit",
+      "ไวรัสเบรน (Brain)",
+      "Core War (ต้นกำเนิดไวรัส)",
+      "Macro Viruses"
+    ],
+    "explanation": "สไลด์ 2.ppt หน้า 16: สทีลต์ไวรัส (Stealth Viruses) มีกลไกพรางตัว (Stealth) คอยดักการอ่านระบบ เพื่อซ่อนขนาดจริงของไฟล์ที่ติดเชื้อไม่ให้ตรวจพบ",
+    "memoryHook": "ล่องหนพรางตัวเหมือนเครื่องบินสเตลธ์ = 'Stealth Viruses'",
+    "keywords": [
+      "พรางตัว",
+      "สทีลต์ไวรัส",
+      "Stealth Viruses"
+    ]
+  },
+  {
+    "id": 40,
+    "set": 4,
+    "setName": "ชุดที่ 4: มัลแวร์และไวรัสคอมพิวเตอร์ (2.ppt)",
+    "category": "Malicious Software",
+    "question": "ไวรัสที่แทรกมากับไฟล์เอกสารของโปรแกรมสำนักงาน (เช่น MS Office) ที่มีสคริปต์อัตโนมัติ",
+    "answer": "Macro Viruses",
+    "choices": [
+      "Macro Viruses",
+      "Stealth Viruses",
+      "Polymorphic Viruses",
+      "Morris Worm",
+      "Trapdoor / Backdoor",
+      "Logic Bomb",
+      "ม้าโทรจัน (Trojan Horse)",
+      "Bacteria / Rabbit",
+      "ไวรัสเบรน (Brain)",
+      "Core War (ต้นกำเนิดไวรัส)"
+    ],
+    "explanation": "สไลด์ 2.ppt หน้า 17: มาโครไวรัส (Macro Viruses) คือไวรัสที่เขียนด้วยคำสั่งมาโครและฝังมากับไฟล์เอกสารอย่าง Word หรือ Excel",
+    "memoryHook": "แฝงมากับไฟล์เอกสาร Office / สคริปต์มาโคร = 'Macro Viruses'",
+    "keywords": [
+      "ไฟล์เอกสาร",
+      "มาโคร",
+      "Macro Viruses"
+    ]
+  },
+  {
+    "id": 41,
+    "set": 5,
+    "setName": "ชุดที่ 5: ยุคของ Antivirus และการโจมตี DDoS (2.ppt)",
+    "category": "Antivirus & DDoS",
+    "question": "โปรแกรมตรวจหาไวรัสยุคที่ 1 (1st Generation Antivirus)",
+    "answer": "ค้นหาจากคลังลายเซ็น (Signatures) ของไวรัสที่รู้จัก",
+    "choices": [
+      "ค้นหาจากคลังลายเซ็น (Signatures) ของไวรัสที่รู้จัก",
+      "มองหาสัญญาณทั่วไป (Heuristic) และตรวจสอบค่า Hash",
+      "กับดักกิจกรรม (Activity Traps) ดักจับพฤติกรรมในแรม",
+      "Full Featured รวมเทคนิคตรวจจับทุกแบบเข้าด้วยกัน",
+      "ขั้นตอนรวบรวมกำลังพล (สร้าง Botnet ผ่านมัลแวร์)",
+      "ขั้นตอนจู่โจมเป้าหมาย (ส่ง Traffic ถล่มจน Bandwidth เต็ม)",
+      "ขั้นตอนเรียกค่าไถ่ (ใช้สภาวะสุญญากาศแลกผลประโยชน์)",
+      "Zombie (คอมพิวเตอร์ซอมบี้ลูกสมุน)",
+      "Payload (ส่วนคำสั่งอันตรายที่รอทำงาน)",
+      "Boot Sector Viruses"
+    ],
+    "explanation": "สไลด์ 2.ppt หน้า 23: 1st Generation Antivirus ใช้การค้นหาไฟล์ตามไลบรารีของ 'ลายเซ็น (Signatures)' ที่รู้จัก และตรวจความยาวไฟล์ปฏิบัติการ",
+    "memoryHook": "Antivirus ยุค 1 = เริ่มต้นด้วย 'สแกนหา Signature (ลายเซ็นเดิม)'",
+    "keywords": [
+      "ยุคที่ 1",
+      "1st Generation",
+      "ลายเซ็น",
+      "Signatures"
+    ]
+  },
+  {
+    "id": 42,
+    "set": 5,
+    "setName": "ชุดที่ 5: ยุคของ Antivirus และการโจมตี DDoS (2.ppt)",
+    "category": "Antivirus & DDoS",
+    "question": "โปรแกรมตรวจหาไวรัสยุคที่ 2 (2nd Generation Antivirus)",
+    "answer": "มองหาสัญญาณทั่วไป (Heuristic) และตรวจสอบค่า Hash",
+    "choices": [
+      "มองหาสัญญาณทั่วไป (Heuristic) และตรวจสอบค่า Hash",
+      "ค้นหาจากคลังลายเซ็น (Signatures) ของไวรัสที่รู้จัก",
+      "กับดักกิจกรรม (Activity Traps) ดักจับพฤติกรรมในแรม",
+      "Full Featured รวมเทคนิคตรวจจับทุกแบบเข้าด้วยกัน",
+      "ขั้นตอนรวบรวมกำลังพล (สร้าง Botnet ผ่านมัลแวร์)",
+      "ขั้นตอนจู่โจมเป้าหมาย (ส่ง Traffic ถล่มจน Bandwidth เต็ม)",
+      "ขั้นตอนเรียกค่าไถ่ (ใช้สภาวะสุญญากาศแลกผลประโยชน์)",
+      "Zombie (คอมพิวเตอร์ซอมบี้ลูกสมุน)",
+      "Payload (ส่วนคำสั่งอันตรายที่รอทำงาน)",
+      "Boot Sector Viruses"
+    ],
+    "explanation": "สไลด์ 2.ppt หน้า 23: 2nd Generation ก้าวหน้าขึ้นโดยมองหาสัญญาณทั่วไป (Heuristics) ที่พบบ่อยในไวรัส และตรวจการเปลี่ยนแปลงของ Checksum หรือ Hash",
+    "memoryHook": "Antivirus ยุค 2 = พัฒนาขึ้นมาดู 'สัญญาณทั่วไป (Heuristic) และ Hash'",
+    "keywords": [
+      "ยุคที่ 2",
+      "2nd Generation",
+      "Heuristic",
+      "Hash"
+    ]
+  },
+  {
+    "id": 43,
+    "set": 5,
+    "setName": "ชุดที่ 5: ยุคของ Antivirus และการโจมตี DDoS (2.ppt)",
+    "category": "Antivirus & DDoS",
+    "question": "โปรแกรมตรวจหาไวรัสยุคที่ 3 (3rd Generation Antivirus)",
+    "answer": "กับดักกิจกรรม (Activity Traps) ดักจับพฤติกรรมในแรม",
+    "choices": [
+      "กับดักกิจกรรม (Activity Traps) ดักจับพฤติกรรมในแรม",
+      "มองหาสัญญาณทั่วไป (Heuristic) และตรวจสอบค่า Hash",
+      "ค้นหาจากคลังลายเซ็น (Signatures) ของไวรัสที่รู้จัก",
+      "Full Featured รวมเทคนิคตรวจจับทุกแบบเข้าด้วยกัน",
+      "ขั้นตอนรวบรวมกำลังพล (สร้าง Botnet ผ่านมัลแวร์)",
+      "ขั้นตอนจู่โจมเป้าหมาย (ส่ง Traffic ถล่มจน Bandwidth เต็ม)",
+      "ขั้นตอนเรียกค่าไถ่ (ใช้สภาวะสุญญากาศแลกผลประโยชน์)",
+      "Zombie (คอมพิวเตอร์ซอมบี้ลูกสมุน)",
+      "Payload (ส่วนคำสั่งอันตรายที่รอทำงาน)",
+      "Boot Sector Viruses"
+    ],
+    "explanation": "สไลด์ 2.ppt หน้า 23: 3rd Generation เรียกว่า 'กับดักกิจกรรม (Activity Traps)' แฝงตัวอยู่ในหน่วยความจำเพื่อเฝ้าระวังพฤติกรรมผิดปกติของโปรแกรม",
+    "memoryHook": "Antivirus ยุค 3 = ฝังใน RAM วาง 'กับดักกิจกรรม (Activity Traps)'",
+    "keywords": [
+      "ยุคที่ 3",
+      "3rd Generation",
+      "กับดักกิจกรรม",
+      "Activity Traps"
+    ]
+  },
+  {
+    "id": 44,
+    "set": 5,
+    "setName": "ชุดที่ 5: ยุคของ Antivirus และการโจมตี DDoS (2.ppt)",
+    "category": "Antivirus & DDoS",
+    "question": "โปรแกรมตรวจหาไวรัสยุคที่ 4 (4th Generation Antivirus)",
+    "answer": "Full Featured รวมเทคนิคตรวจจับทุกแบบเข้าด้วยกัน",
+    "choices": [
+      "Full Featured รวมเทคนิคตรวจจับทุกแบบเข้าด้วยกัน",
+      "กับดักกิจกรรม (Activity Traps) ดักจับพฤติกรรมในแรม",
+      "มองหาสัญญาณทั่วไป (Heuristic) และตรวจสอบค่า Hash",
+      "ค้นหาจากคลังลายเซ็น (Signatures) ของไวรัสที่รู้จัก",
+      "ขั้นตอนรวบรวมกำลังพล (สร้าง Botnet ผ่านมัลแวร์)",
+      "ขั้นตอนจู่โจมเป้าหมาย (ส่ง Traffic ถล่มจน Bandwidth เต็ม)",
+      "ขั้นตอนเรียกค่าไถ่ (ใช้สภาวะสุญญากาศแลกผลประโยชน์)",
+      "Zombie (คอมพิวเตอร์ซอมบี้ลูกสมุน)",
+      "Payload (ส่วนคำสั่งอันตรายที่รอทำงาน)",
+      "Boot Sector Viruses"
+    ],
+    "explanation": "สไลด์ 2.ppt หน้า 23: 4th Generation เป็นแบบ Full Featured ที่รวมข้อดีของเทคนิคทั้งลายเซ็น, Heuristic, และ Activity Trap เข้าไว้ด้วยกันอย่างสมบูรณ์",
+    "memoryHook": "Antivirus ยุค 4 = ขั้นสุดยอด 'Full Featured รวมทุกกระบวนท่า'",
+    "keywords": [
+      "ยุคที่ 4",
+      "4th Generation",
+      "Full Featured"
+    ]
+  },
+  {
+    "id": 45,
+    "set": 5,
+    "setName": "ชุดที่ 5: ยุคของ Antivirus และการโจมตี DDoS (2.ppt)",
+    "category": "Antivirus & DDoS",
+    "question": "หลักการจู่โจมแบบ DDoS ขั้นที่ 1",
+    "answer": "ขั้นตอนรวบรวมกำลังพล (สร้าง Botnet ผ่านมัลแวร์)",
+    "choices": [
+      "ขั้นตอนรวบรวมกำลังพล (สร้าง Botnet ผ่านมัลแวร์)",
+      "ขั้นตอนจู่โจมเป้าหมาย (ส่ง Traffic ถล่มจน Bandwidth เต็ม)",
+      "ขั้นตอนเรียกค่าไถ่ (ใช้สภาวะสุญญากาศแลกผลประโยชน์)",
+      "Full Featured รวมเทคนิคตรวจจับทุกแบบเข้าด้วยกัน",
+      "กับดักกิจกรรม (Activity Traps) ดักจับพฤติกรรมในแรม",
+      "มองหาสัญญาณทั่วไป (Heuristic) และตรวจสอบค่า Hash",
+      "ค้นหาจากคลังลายเซ็น (Signatures) ของไวรัสที่รู้จัก",
+      "Zombie (คอมพิวเตอร์ซอมบี้ลูกสมุน)",
+      "Payload (ส่วนคำสั่งอันตรายที่รอทำงาน)",
+      "Boot Sector Viruses"
+    ],
+    "explanation": "สไลด์ 2.ppt หน้า 10: ขั้นตอนที่ 1 ของการโจมตี DDoS คือ 'รวบรวมกำลังพล' โดยปล่อยมัลแวร์เปลี่ยนเครื่องเหยื่อให้กลายเป็น Botnet ลูกสมุน",
+    "memoryHook": "DDoS ขั้น 1 = 'รวบรวมกำลังพล' (หาพวกซอมบี้ก่อน)",
+    "keywords": [
+      "DDoS ขั้นที่ 1",
+      "รวบรวมกำลังพล",
+      "Botnet"
+    ]
+  },
+  {
+    "id": 46,
+    "set": 5,
+    "setName": "ชุดที่ 5: ยุคของ Antivirus และการโจมตี DDoS (2.ppt)",
+    "category": "Antivirus & DDoS",
+    "question": "หลักการจู่โจมแบบ DDoS ขั้นที่ 2",
+    "answer": "ขั้นตอนจู่โจมเป้าหมาย (ส่ง Traffic ถล่มจน Bandwidth เต็ม)",
+    "choices": [
+      "ขั้นตอนจู่โจมเป้าหมาย (ส่ง Traffic ถล่มจน Bandwidth เต็ม)",
+      "ขั้นตอนรวบรวมกำลังพล (สร้าง Botnet ผ่านมัลแวร์)",
+      "ขั้นตอนเรียกค่าไถ่ (ใช้สภาวะสุญญากาศแลกผลประโยชน์)",
+      "Full Featured รวมเทคนิคตรวจจับทุกแบบเข้าด้วยกัน",
+      "กับดักกิจกรรม (Activity Traps) ดักจับพฤติกรรมในแรม",
+      "มองหาสัญญาณทั่วไป (Heuristic) และตรวจสอบค่า Hash",
+      "ค้นหาจากคลังลายเซ็น (Signatures) ของไวรัสที่รู้จัก",
+      "Zombie (คอมพิวเตอร์ซอมบี้ลูกสมุน)",
+      "Payload (ส่วนคำสั่งอันตรายที่รอทำงาน)",
+      "Boot Sector Viruses"
+    ],
+    "explanation": "สไลด์ 2.ppt หน้า 10: ขั้นตอนที่ 2 คือ 'จู่โจม' สั่งให้กองทัพ Botnet รุมส่ง Traffic หรือคำขอเข้าถึงข้อมูลพร้อมกันจน Server ล่มหรือ Bandwidth เต็ม",
+    "memoryHook": "DDoS ขั้น 2 = 'จู่โจมเป้าหมาย' (สั่งซอมบี้ยิงถล่ม)",
+    "keywords": [
+      "DDoS ขั้นที่ 2",
+      "จู่โจม",
+      "ถล่ม Bandwidth"
+    ]
+  },
+  {
+    "id": 47,
+    "set": 5,
+    "setName": "ชุดที่ 5: ยุคของ Antivirus และการโจมตี DDoS (2.ppt)",
+    "category": "Antivirus & DDoS",
+    "question": "หลักการจู่โจมแบบ DDoS ขั้นที่ 3",
+    "answer": "ขั้นตอนเรียกค่าไถ่ (ใช้สภาวะสุญญากาศแลกผลประโยชน์)",
+    "choices": [
+      "ขั้นตอนเรียกค่าไถ่ (ใช้สภาวะสุญญากาศแลกผลประโยชน์)",
+      "ขั้นตอนจู่โจมเป้าหมาย (ส่ง Traffic ถล่มจน Bandwidth เต็ม)",
+      "ขั้นตอนรวบรวมกำลังพล (สร้าง Botnet ผ่านมัลแวร์)",
+      "Full Featured รวมเทคนิคตรวจจับทุกแบบเข้าด้วยกัน",
+      "กับดักกิจกรรม (Activity Traps) ดักจับพฤติกรรมในแรม",
+      "มองหาสัญญาณทั่วไป (Heuristic) และตรวจสอบค่า Hash",
+      "ค้นหาจากคลังลายเซ็น (Signatures) ของไวรัสที่รู้จัก",
+      "Zombie (คอมพิวเตอร์ซอมบี้ลูกสมุน)",
+      "Payload (ส่วนคำสั่งอันตรายที่รอทำงาน)",
+      "Boot Sector Viruses"
+    ],
+    "explanation": "สไลด์ 2.ppt หน้า 10: ขั้นตอนที่ 3 คือ 'เรียกค่าไถ่' ใช้ช่วงที่เว็บใช้งานไม่ได้เป็นตัวประกันเพื่อต่อรองขอเงินหรือผลประโยชน์",
+    "memoryHook": "DDoS ขั้น 3 = 'เรียกค่าไถ่' (เว็บล่มแล้วไถเงิน)",
+    "keywords": [
+      "DDoS ขั้นที่ 3",
+      "เรียกค่าไถ่",
+      "ตัวประกัน"
+    ]
+  },
+  {
+    "id": 48,
+    "set": 5,
+    "setName": "ชุดที่ 5: ยุคของ Antivirus และการโจมตี DDoS (2.ppt)",
+    "category": "Antivirus & DDoS",
+    "question": "คอมพิวเตอร์ที่ถูกแอบฝังโปรแกรมควบคุมจากระยะไกลเพื่อเป็นทาสรับใช้ในการยิงโจมตี DDoS",
+    "answer": "Zombie (คอมพิวเตอร์ซอมบี้ลูกสมุน)",
+    "choices": [
+      "Zombie (คอมพิวเตอร์ซอมบี้ลูกสมุน)",
+      "Payload (ส่วนคำสั่งอันตรายที่รอทำงาน)",
+      "Boot Sector Viruses",
+      "ขั้นตอนรวบรวมกำลังพล (สร้าง Botnet ผ่านมัลแวร์)",
+      "ขั้นตอนจู่โจมเป้าหมาย (ส่ง Traffic ถล่มจน Bandwidth เต็ม)",
+      "ขั้นตอนเรียกค่าไถ่ (ใช้สภาวะสุญญากาศแลกผลประโยชน์)",
+      "Full Featured รวมเทคนิคตรวจจับทุกแบบเข้าด้วยกัน",
+      "กับดักกิจกรรม (Activity Traps) ดักจับพฤติกรรมในแรม",
+      "มองหาสัญญาณทั่วไป (Heuristic) และตรวจสอบค่า Hash",
+      "ค้นหาจากคลังลายเซ็น (Signatures) ของไวรัสที่รู้จัก"
+    ],
+    "explanation": "สไลด์ 2.ppt หน้า 9: Zombie คือโปรแกรมหรือเครื่องคอมพิวเตอร์ที่ถูกแฮกเกอร์แอบเข้าครอบครอง เพื่อใช้เป็นเครื่องมือยิง DDoS ติดตามตัวการยาก",
+    "memoryHook": "เครื่องเหยื่อถูกสะกดจิตเป็นทาส = 'Zombie (ซอมบี้)'",
+    "keywords": [
+      "Zombie",
+      "คอมพิวเตอร์ซอมบี้",
+      "Botnet"
+    ]
+  },
+  {
+    "id": 49,
+    "set": 5,
+    "setName": "ชุดที่ 5: ยุคของ Antivirus และการโจมตี DDoS (2.ppt)",
+    "category": "Antivirus & DDoS",
+    "question": "ส่วนของโค้ดอันตรายในไวรัสที่ทำหน้าที่สร้างความเสียหายจริง (หลังจากแพร่กระจายตัวเสร็จแล้ว)",
+    "answer": "Payload (ส่วนคำสั่งอันตรายที่รอทำงาน)",
+    "choices": [
+      "Payload (ส่วนคำสั่งอันตรายที่รอทำงาน)",
+      "Zombie (คอมพิวเตอร์ซอมบี้ลูกสมุน)",
+      "Boot Sector Viruses",
+      "ขั้นตอนรวบรวมกำลังพล (สร้าง Botnet ผ่านมัลแวร์)",
+      "ขั้นตอนจู่โจมเป้าหมาย (ส่ง Traffic ถล่มจน Bandwidth เต็ม)",
+      "ขั้นตอนเรียกค่าไถ่ (ใช้สภาวะสุญญากาศแลกผลประโยชน์)",
+      "Full Featured รวมเทคนิคตรวจจับทุกแบบเข้าด้วยกัน",
+      "กับดักกิจกรรม (Activity Traps) ดักจับพฤติกรรมในแรม",
+      "มองหาสัญญาณทั่วไป (Heuristic) และตรวจสอบค่า Hash",
+      "ค้นหาจากคลังลายเซ็น (Signatures) ของไวรัสที่รู้จัก"
+    ],
+    "explanation": "สไลด์ 2.ppt หน้า 7: Payload คือ 'สิ่งที่เป็นอันตรายของโปรแกรม' ที่จะเริ่มทำงานทำลายข้อมูลหลังจากไวรัสมีเวลาแพร่กระจายตัวแล้ว",
+    "memoryHook": "หัวรบระเบิดที่สร้างความเสียหายจริง = 'Payload (เพย์โหลด)'",
+    "keywords": [
+      "Payload",
+      "เพย์โหลด",
+      "สร้างความเสียหายจริง"
+    ]
+  },
+  {
+    "id": 50,
+    "set": 5,
+    "setName": "ชุดที่ 5: ยุคของ Antivirus และการโจมตี DDoS (2.ppt)",
+    "category": "Antivirus & DDoS",
+    "question": "ไวรัสที่ฝังตัวอยู่ในส่วนบู๊ตของฮาร์ดดิสก์ และจะถูกโหลดเข้าสู่หน่วยความจำทุกครั้งที่เปิดเครื่อง",
+    "answer": "Boot Sector Viruses",
+    "choices": [
+      "Boot Sector Viruses",
+      "Payload (ส่วนคำสั่งอันตรายที่รอทำงาน)",
+      "Zombie (คอมพิวเตอร์ซอมบี้ลูกสมุน)",
+      "ขั้นตอนรวบรวมกำลังพล (สร้าง Botnet ผ่านมัลแวร์)",
+      "ขั้นตอนจู่โจมเป้าหมาย (ส่ง Traffic ถล่มจน Bandwidth เต็ม)",
+      "ขั้นตอนเรียกค่าไถ่ (ใช้สภาวะสุญญากาศแลกผลประโยชน์)",
+      "Full Featured รวมเทคนิคตรวจจับทุกแบบเข้าด้วยกัน",
+      "กับดักกิจกรรม (Activity Traps) ดักจับพฤติกรรมในแรม",
+      "มองหาสัญญาณทั่วไป (Heuristic) และตรวจสอบค่า Hash",
+      "ค้นหาจากคลังลายเซ็น (Signatures) ของไวรัสที่รู้จัก"
+    ],
+    "explanation": "สไลด์ 2.ppt หน้า 13: บู๊ตเซกเตอร์ไวรัส (Boot Sector Viruses) คือไวรัสที่เก็บตัวเองอยู่ในบู๊ตเซกเตอร์ของฮาร์ดดิสก์ และแพร่กระจายในตอนที่ทำการบู๊ตเครื่อง",
+    "memoryHook": "ติดตั้งแต่ตอนเปิดเครื่อง = 'Boot Sector Viruses'",
+    "keywords": [
+      "Boot Sector",
+      "บู๊ตเครื่อง",
+      "ฮาร์ดดิสก์"
+    ]
+  },
+  {
+    "id": 51,
+    "set": 6,
+    "setName": "ชุดที่ 6: ความมั่นคงปลอดภัยไซเบอร์และ CIA Triad (3.pdf)",
+    "category": "Cyber Security & CIA",
+    "question": "องค์ประกอบ CIA ที่ป้องกันไม่ให้ข้อมูลถูกเปิดเผยแก่บุคคลภายนอกที่ไม่ได้รับอนุญาต",
+    "answer": "Confidentiality (การรักษาความลับ)",
+    "choices": [
+      "Confidentiality (การรักษาความลับ)",
+      "Integrity (ความถูกต้องสมบูรณ์)",
+      "Availability (ความพร้อมใช้งาน)",
+      "Threat (ภัยคุกคาม)",
+      "Vulnerability (ช่องโหว่)",
+      "Exploit (การหาผลประโยชน์จากช่องโหว่)",
+      "ThaiCERT",
+      "Ransomware (แรนซัมแวร์ / เช่น WannaCry)",
+      "Social Engineering (วิศวกรรมสังคม)",
+      "Reconnaissance Attacks (การลาดตระเวน)"
+    ],
+    "explanation": "สไลด์ 3.pdf หน้า 3: Confidentiality (การรักษาความลับ) คือการป้องกันข้อมูลไม่ให้ถูกเข้าถึงหรือเปิดเผยแก่บุคคลที่ไม่ได้รับอนุญาต",
+    "memoryHook": "C ใน CIA = 'Confidentiality' (ปิดเป็นความลับ ไม่ให้คนอื่นเห็น)",
+    "keywords": [
+      "CIA",
+      "Confidentiality",
+      "รักษาความลับ"
+    ]
+  },
+  {
+    "id": 52,
+    "set": 6,
+    "setName": "ชุดที่ 6: ความมั่นคงปลอดภัยไซเบอร์และ CIA Triad (3.pdf)",
+    "category": "Cyber Security & CIA",
+    "question": "องค์ประกอบ CIA ที่รับรองว่าข้อมูลถูกต้อง เที่ยงตรง และไม่ถูกแอบแก้ไข ดัดแปลง หรือทำลาย",
+    "answer": "Integrity (ความถูกต้องสมบูรณ์)",
+    "choices": [
+      "Integrity (ความถูกต้องสมบูรณ์)",
+      "Confidentiality (การรักษาความลับ)",
+      "Availability (ความพร้อมใช้งาน)",
+      "Threat (ภัยคุกคาม)",
+      "Vulnerability (ช่องโหว่)",
+      "Exploit (การหาผลประโยชน์จากช่องโหว่)",
+      "ThaiCERT",
+      "Ransomware (แรนซัมแวร์ / เช่น WannaCry)",
+      "Social Engineering (วิศวกรรมสังคม)",
+      "Reconnaissance Attacks (การลาดตระเวน)"
+    ],
+    "explanation": "สไลด์ 3.pdf หน้า 3: Integrity (ความถูกต้องสมบูรณ์) คอยดูแลให้ข้อมูลยังคงความถูกต้อง ครบถ้วน ไม่ถูกดัดแปลงแก้ไขระหว่างทาง",
+    "memoryHook": "I ใน CIA = 'Integrity' (ข้อมูลต้องถูกต้องสมบูรณ์ ไม่ถูกแก้)",
+    "keywords": [
+      "CIA",
+      "Integrity",
+      "ความถูกต้องสมบูรณ์"
+    ]
+  },
+  {
+    "id": 53,
+    "set": 6,
+    "setName": "ชุดที่ 6: ความมั่นคงปลอดภัยไซเบอร์และ CIA Triad (3.pdf)",
+    "category": "Cyber Security & CIA",
+    "question": "องค์ประกอบ CIA ที่รับรองว่าระบบและข้อมูลพร้อมให้ผู้มีสิทธิ์เข้าใช้งานได้เสมอเมื่อต้องการ",
+    "answer": "Availability (ความพร้อมใช้งาน)",
+    "choices": [
+      "Availability (ความพร้อมใช้งาน)",
+      "Integrity (ความถูกต้องสมบูรณ์)",
+      "Confidentiality (การรักษาความลับ)",
+      "Threat (ภัยคุกคาม)",
+      "Vulnerability (ช่องโหว่)",
+      "Exploit (การหาผลประโยชน์จากช่องโหว่)",
+      "ThaiCERT",
+      "Ransomware (แรนซัมแวร์ / เช่น WannaCry)",
+      "Social Engineering (วิศวกรรมสังคม)",
+      "Reconnaissance Attacks (การลาดตระเวน)"
+    ],
+    "explanation": "สไลด์ 3.pdf หน้า 3: Availability (ความพร้อมใช้งาน) คือมาตรการที่ทำให้ระบบคอมพิวเตอร์และข้อมูลเปิดบริการได้อย่างต่อเนื่อง ไม่ล่ม",
+    "memoryHook": "A ใน CIA = 'Availability' (เปิดใช้งานได้ตลอดเวลา ไม่ล่ม)",
+    "keywords": [
+      "CIA",
+      "Availability",
+      "ความพร้อมใช้งาน"
+    ]
+  },
+  {
+    "id": 54,
+    "set": 6,
+    "setName": "ชุดที่ 6: ความมั่นคงปลอดภัยไซเบอร์และ CIA Triad (3.pdf)",
+    "category": "Cyber Security & CIA",
+    "question": "อันตรายหรือสิ่งที่เป็นไปได้ที่จะสร้างความเสียหายต่อทรัพย์สิน ข้อมูล หรือระบบเครือข่าย",
+    "answer": "Threat (ภัยคุกคาม)",
+    "choices": [
+      "Threat (ภัยคุกคาม)",
+      "Vulnerability (ช่องโหว่)",
+      "Exploit (การหาผลประโยชน์จากช่องโหว่)",
+      "Availability (ความพร้อมใช้งาน)",
+      "Integrity (ความถูกต้องสมบูรณ์)",
+      "Confidentiality (การรักษาความลับ)",
+      "ThaiCERT",
+      "Ransomware (แรนซัมแวร์ / เช่น WannaCry)",
+      "Social Engineering (วิศวกรรมสังคม)",
+      "Reconnaissance Attacks (การลาดตระเวน)"
+    ],
+    "explanation": "สไลด์ 3.pdf หน้า 5: Threat (ภัยคุกคาม) คืออันตรายที่เป็นไปได้ต่อทรัพย์สิน (ข้อมูลหรือเครือข่าย)",
+    "memoryHook": "อันตรายที่อาจเกิดขึ้น = 'Threat (ภัยคุกคาม)'",
+    "keywords": [
+      "อันตรายที่เป็นไปได้",
+      "Threat",
+      "ภัยคุกคาม"
+    ]
+  },
+  {
+    "id": 55,
+    "set": 6,
+    "setName": "ชุดที่ 6: ความมั่นคงปลอดภัยไซเบอร์และ CIA Triad (3.pdf)",
+    "category": "Cyber Security & CIA",
+    "question": "จุดอ่อนหรือข้อบกพร่องในระบบรักษาความปลอดภัย ซอฟต์แวร์ หรือฮาร์ดแวร์",
+    "answer": "Vulnerability (ช่องโหว่)",
+    "choices": [
+      "Vulnerability (ช่องโหว่)",
+      "Threat (ภัยคุกคาม)",
+      "Exploit (การหาผลประโยชน์จากช่องโหว่)",
+      "Availability (ความพร้อมใช้งาน)",
+      "Integrity (ความถูกต้องสมบูรณ์)",
+      "Confidentiality (การรักษาความลับ)",
+      "ThaiCERT",
+      "Ransomware (แรนซัมแวร์ / เช่น WannaCry)",
+      "Social Engineering (วิศวกรรมสังคม)",
+      "Reconnaissance Attacks (การลาดตระเวน)"
+    ],
+    "explanation": "สไลด์ 3.pdf หน้า 5: Vulnerability (ช่องโหว่/ความอ่อนแอ) คือส่วนที่ผู้บุกรุกสามารถใช้เป็นช่องทางในการเจาะเข้ามาทำอันตราย",
+    "memoryHook": "จุดอ่อนหรือรอยแยกในระบบ = 'Vulnerability (ช่องโหว่)'",
+    "keywords": [
+      "จุดอ่อน",
+      "ข้อบกพร่อง",
+      "Vulnerability",
+      "ช่องโหว่"
+    ]
+  },
+  {
+    "id": 56,
+    "set": 6,
+    "setName": "ชุดที่ 6: ความมั่นคงปลอดภัยไซเบอร์และ CIA Triad (3.pdf)",
+    "category": "Cyber Security & CIA",
+    "question": "วิธีการ โค้ดโปรแกรม หรือการกระทำที่ใช้โจมตีผ่านช่องโหว่เพื่อควบคุมหรือทำลายระบบ",
+    "answer": "Exploit (การหาผลประโยชน์จากช่องโหว่)",
+    "choices": [
+      "Exploit (การหาผลประโยชน์จากช่องโหว่)",
+      "Vulnerability (ช่องโหว่)",
+      "Threat (ภัยคุกคาม)",
+      "Availability (ความพร้อมใช้งาน)",
+      "Integrity (ความถูกต้องสมบูรณ์)",
+      "Confidentiality (การรักษาความลับ)",
+      "ThaiCERT",
+      "Ransomware (แรนซัมแวร์ / เช่น WannaCry)",
+      "Social Engineering (วิศวกรรมสังคม)",
+      "Reconnaissance Attacks (การลาดตระเวน)"
+    ],
+    "explanation": "สไลด์ 3.pdf หน้า 5 & แบบฝึกหัดข้อ 2: Exploit คือการนำช่องโหว่ (Vulnerability) มาใช้ประโยชน์เพื่อดำเนินการโจมตีจริง",
+    "memoryHook": "เครื่องมือหรือโค้ดที่แฮกเกอร์ใช้เจาะช่องโหว่ = 'Exploit'",
+    "keywords": [
+      "โค้ดโจมตี",
+      "Exploit",
+      "ใช้ประโยชน์จากช่องโหว่"
+    ]
+  },
+  {
+    "id": 57,
+    "set": 6,
+    "setName": "ชุดที่ 6: ความมั่นคงปลอดภัยไซเบอร์และ CIA Triad (3.pdf)",
+    "category": "Cyber Security & CIA",
+    "question": "ศูนย์ประสานการรักษาความมั่นคงปลอดภัยระบบคอมพิวเตอร์ประเทศไทย",
+    "answer": "ThaiCERT",
+    "choices": [
+      "ThaiCERT",
+      "Ransomware (แรนซัมแวร์ / เช่น WannaCry)",
+      "Social Engineering (วิศวกรรมสังคม)",
+      "Reconnaissance Attacks (การลาดตระเวน)",
+      "Exploit (การหาผลประโยชน์จากช่องโหว่)",
+      "Vulnerability (ช่องโหว่)",
+      "Threat (ภัยคุกคาม)",
+      "Availability (ความพร้อมใช้งาน)",
+      "Integrity (ความถูกต้องสมบูรณ์)",
+      "Confidentiality (การรักษาความลับ)"
+    ],
+    "explanation": "สไลด์ 3.pdf หน้า 3: ThaiCERT คือศูนย์ประสานการรักษาความมั่นคงปลอดภัยระบบคอมพิวเตอร์ประเทศไทย คอยแจ้งเตือนภัยไซเบอร์ระดับชาติ",
+    "memoryHook": "ศูนย์ประสานความปลอดภัยไซเบอร์ของไทย = 'ThaiCERT'",
+    "keywords": [
+      "ศูนย์ประสานงาน",
+      "ประเทศไทย",
+      "ThaiCERT"
+    ]
+  },
+  {
+    "id": 58,
+    "set": 6,
+    "setName": "ชุดที่ 6: ความมั่นคงปลอดภัยไซเบอร์และ CIA Triad (3.pdf)",
+    "category": "Cyber Security & CIA",
+    "question": "มัลแวร์ที่มุ่งทำการเข้ารหัสไฟล์ข้อมูลของเหยื่อแล้วขู่เรียกเงินค่าไถ่เพื่อแลกกับคีย์ถอดรหัส",
+    "answer": "Ransomware (แรนซัมแวร์ / เช่น WannaCry)",
+    "choices": [
+      "Ransomware (แรนซัมแวร์ / เช่น WannaCry)",
+      "ThaiCERT",
+      "Social Engineering (วิศวกรรมสังคม)",
+      "Reconnaissance Attacks (การลาดตระเวน)",
+      "Exploit (การหาผลประโยชน์จากช่องโหว่)",
+      "Vulnerability (ช่องโหว่)",
+      "Threat (ภัยคุกคาม)",
+      "Availability (ความพร้อมใช้งาน)",
+      "Integrity (ความถูกต้องสมบูรณ์)",
+      "Confidentiality (การรักษาความลับ)"
+    ],
+    "explanation": "สไลด์ 3.pdf หน้า 17-19: Ransomware มุ่งเข้ารหัสข้อมูลและเรียกค่าไถ่ ตัวอย่างโด่งดังไปทั่วโลกคือ 'WannaCry (WannaCrypt)' ในปี 2017",
+    "memoryHook": "เข้ารหัสไฟล์แล้วทวงเงิน = 'Ransomware (เช่น WannaCry)'",
+    "keywords": [
+      "เข้ารหัสข้อมูล",
+      "เรียกค่าไถ่",
+      "Ransomware",
+      "WannaCry"
+    ]
+  },
+  {
+    "id": 59,
+    "set": 6,
+    "setName": "ชุดที่ 6: ความมั่นคงปลอดภัยไซเบอร์และ CIA Triad (3.pdf)",
+    "category": "Cyber Security & CIA",
+    "question": "การหลอกลวงโดยใช้จิตวิทยาและการเล่นกับความไว้วางใจหรือความกลัวของมนุษย์เพื่อล้วงความลับ",
+    "answer": "Social Engineering (วิศวกรรมสังคม)",
+    "choices": [
+      "Social Engineering (วิศวกรรมสังคม)",
+      "Ransomware (แรนซัมแวร์ / เช่น WannaCry)",
+      "ThaiCERT",
+      "Reconnaissance Attacks (การลาดตระเวน)",
+      "Exploit (การหาผลประโยชน์จากช่องโหว่)",
+      "Vulnerability (ช่องโหว่)",
+      "Threat (ภัยคุกคาม)",
+      "Availability (ความพร้อมใช้งาน)",
+      "Integrity (ความถูกต้องสมบูรณ์)",
+      "Confidentiality (การรักษาความลับ)"
+    ],
+    "explanation": "สไลด์ 3.pdf หน้า 26: การโจมตีแบบ Social Engineering (วิศวกรรมสังคม) คือการหลอกลวงมนุษย์ด้วยจิตวิทยาเพื่อล้วงรหัสผ่านหรือข้อมูลลับ",
+    "memoryHook": "หลอกลวงจิตวิทยาคน = 'Social Engineering (วิศวกรรมสังคม)'",
+    "keywords": [
+      "จิตวิทยา",
+      "ความไว้วางใจ",
+      "Social Engineering",
+      "วิศวกรรมสังคม"
+    ]
+  },
+  {
+    "id": 60,
+    "set": 6,
+    "setName": "ชุดที่ 6: ความมั่นคงปลอดภัยไซเบอร์และ CIA Triad (3.pdf)",
+    "category": "Cyber Security & CIA",
+    "question": "การโจมตีเครือข่ายขั้นแรกเพื่อสำรวจ สแกนพอร์ต และค้นหาช่องโหว่ของเป้าหมาย",
+    "answer": "Reconnaissance Attacks (การลาดตระเวน)",
+    "choices": [
+      "Reconnaissance Attacks (การลาดตระเวน)",
+      "Social Engineering (วิศวกรรมสังคม)",
+      "Ransomware (แรนซัมแวร์ / เช่น WannaCry)",
+      "ThaiCERT",
+      "Exploit (การหาผลประโยชน์จากช่องโหว่)",
+      "Vulnerability (ช่องโหว่)",
+      "Threat (ภัยคุกคาม)",
+      "Availability (ความพร้อมใช้งาน)",
+      "Integrity (ความถูกต้องสมบูรณ์)",
+      "Confidentiality (การรักษาความลับ)"
+    ],
+    "explanation": "สไลด์ 3.pdf หน้า 23-24: Reconnaissance Attacks คือการโจมตีแบบลาดตระเวนเพื่อค้นหา (Scan) ช่องโหว่ ข้อมูล และพอร์ตที่เปิดอยู่",
+    "memoryHook": "สแกนหาช่องโหว่ก่อนลงมือเจาะ = 'Reconnaissance (ลาดตระเวน)'",
+    "keywords": [
+      "สำรวจ",
+      "สแกน",
+      "ลาดตระเวน",
+      "Reconnaissance"
+    ]
+  },
+  {
+    "id": 61,
+    "set": 7,
+    "setName": "ชุดที่ 7: เครือข่ายและความปลอดภัยบุคคลทั่วไป (3.pdf & 4.pdf)",
+    "category": "Network & User Security",
+    "question": "การโจมตีเพื่อพยายามเข้าถึงระบบหรือข้อมูลที่ไม่ได้รับอนุญาต (เช่น ดักรหัสผ่าน เจาะบัญชี)",
+    "answer": "Access Attacks (ความพยายามเข้าใช้ระบบ)",
+    "choices": [
+      "Access Attacks (ความพยายามเข้าใช้ระบบ)",
+      "Dictionary Attack",
+      "Adware (มัลแวร์โฆษณา)",
+      "Sniffing (การดักฟังแพ็กเก็ต)",
+      "การทำธุรกรรมผ่าน Public Wi-Fi ที่ไม่มีรหัสผ่าน",
+      "Spoofing (การปลอมแปลงตัวตน)",
+      "Web Application Firewall (WAF)",
+      "Network Level (IPSec)",
+      "S/MIME หรือ PGP",
+      "กระทบต่อ Availability (ความพร้อมใช้งาน)"
+    ],
+    "explanation": "สไลด์ 3.pdf หน้า 25: Access Attacks เป็นความพยายามเข้าถึงเครือข่ายหรือระบบคอมพิวเตอร์ที่ต้องการสิทธิ์ ผ่านการดักฟังข้อมูล รหัสผ่าน หรือช่องโหว่",
+    "memoryHook": "พยายามเจาะล็อกอินเข้าสู่ระบบ = 'Access Attacks'",
+    "keywords": [
+      "พยายามเข้าถึงระบบ",
+      "Access Attacks"
+    ]
+  },
+  {
+    "id": 62,
+    "set": 7,
+    "setName": "ชุดที่ 7: เครือข่ายและความปลอดภัยบุคคลทั่วไป (3.pdf & 4.pdf)",
+    "category": "Network & User Security",
+    "question": "วิธีการเดารหัสผ่านโดยนำคำในพจนานุกรมมาทดลองล็อกอินไปเรื่อยๆ จนกว่าจะตรง",
+    "answer": "Dictionary Attack",
+    "choices": [
+      "Dictionary Attack",
+      "Access Attacks (ความพยายามเข้าใช้ระบบ)",
+      "Adware (มัลแวร์โฆษณา)",
+      "Sniffing (การดักฟังแพ็กเก็ต)",
+      "การทำธุรกรรมผ่าน Public Wi-Fi ที่ไม่มีรหัสผ่าน",
+      "Spoofing (การปลอมแปลงตัวตน)",
+      "Web Application Firewall (WAF)",
+      "Network Level (IPSec)",
+      "S/MIME หรือ PGP",
+      "กระทบต่อ Availability (ความพร้อมใช้งาน)"
+    ],
+    "explanation": "สไลด์ 3.pdf หน้า 30: การค้นหารหัสผ่านด้วยวิธี 'การค้นหาด้วยดิกชันนารี (Dictionary Attack)' คือการนำคำศัพท์ที่คนนิยมใช้มาลองเดาอย่างเป็นระบบ",
+    "memoryHook": "เดารหัสผ่านจากศัพท์ในพจนานุกรม = 'Dictionary Attack'",
+    "keywords": [
+      "เดารหัสผ่าน",
+      "พจนานุกรม",
+      "Dictionary Attack"
+    ]
+  },
+  {
+    "id": 63,
+    "set": 7,
+    "setName": "ชุดที่ 7: เครือข่ายและความปลอดภัยบุคคลทั่วไป (3.pdf & 4.pdf)",
+    "category": "Network & User Security",
+    "question": "มัลแวร์ที่มุ่งแสดงโฆษณา ยึดหน้าแรกของเบราว์เซอร์ และบังคับเปิดป็อปอัป (เช่น เว็บไซต์ hao123)",
+    "answer": "Adware (มัลแวร์โฆษณา)",
+    "choices": [
+      "Adware (มัลแวร์โฆษณา)",
+      "Dictionary Attack",
+      "Access Attacks (ความพยายามเข้าใช้ระบบ)",
+      "Sniffing (การดักฟังแพ็กเก็ต)",
+      "การทำธุรกรรมผ่าน Public Wi-Fi ที่ไม่มีรหัสผ่าน",
+      "Spoofing (การปลอมแปลงตัวตน)",
+      "Web Application Firewall (WAF)",
+      "Network Level (IPSec)",
+      "S/MIME หรือ PGP",
+      "กระทบต่อ Availability (ความพร้อมใช้งาน)"
+    ],
+    "explanation": "สไลด์ 3.pdf หน้า 14-16: Adware มุ่งแสดงโฆษณา เปลี่ยนหน้า Home page ของเบราว์เซอร์ และเด้งป็อปอัป เช่นกรณีตัวอย่างเว็บ hao123",
+    "memoryHook": "Ad (โฆษณา) + Malware = 'Adware (เช่นตัวอย่างเว็บ hao123)'",
+    "keywords": [
+      "โฆษณา",
+      "หน้าแรกเบราว์เซอร์",
+      "Adware",
+      "hao123"
+    ]
+  },
+  {
+    "id": 64,
+    "set": 7,
+    "setName": "ชุดที่ 7: เครือข่ายและความปลอดภัยบุคคลทั่วไป (3.pdf & 4.pdf)",
+    "category": "Network & User Security",
+    "question": "การดักจับแพ็กเก็ตข้อมูลที่ส่งผ่านเครือข่ายเพื่อขโมยข้อมูลที่ไม่ได้เข้ารหัส",
+    "answer": "Sniffing (การดักฟังแพ็กเก็ต)",
+    "choices": [
+      "Sniffing (การดักฟังแพ็กเก็ต)",
+      "Adware (มัลแวร์โฆษณา)",
+      "Dictionary Attack",
+      "Access Attacks (ความพยายามเข้าใช้ระบบ)",
+      "การทำธุรกรรมผ่าน Public Wi-Fi ที่ไม่มีรหัสผ่าน",
+      "Spoofing (การปลอมแปลงตัวตน)",
+      "Web Application Firewall (WAF)",
+      "Network Level (IPSec)",
+      "S/MIME หรือ PGP",
+      "กระทบต่อ Availability (ความพร้อมใช้งาน)"
+    ],
+    "explanation": "สไลด์ 3.pdf & 4.pdf: Eavesdropping หรือ Packet Sniffing คือการดักจับข้อมูลบนสายสัญญาณ หากข้อมูลไม่ได้วิ่งผ่าน SSL/TLS แฮกเกอร์จะเห็นข้อความดิบทั้งหมด",
+    "memoryHook": "ดมกลิ่นดักจับแพ็กเก็ตในสาย = 'Sniffing (สอดแนม/ดักฟัง)'",
+    "keywords": [
+      "ดักจับแพ็กเก็ต",
+      "Sniffing",
+      "ดักฟัง"
+    ]
+  },
+  {
+    "id": 65,
+    "set": 7,
+    "setName": "ชุดที่ 7: เครือข่ายและความปลอดภัยบุคคลทั่วไป (3.pdf & 4.pdf)",
+    "category": "Network & User Security",
+    "question": "พฤติกรรมการใช้งานที่เสี่ยงต่อการถูกขโมยข้อมูลบัตรเครดิตและรหัสผ่านมากที่สุด",
+    "answer": "การทำธุรกรรมผ่าน Public Wi-Fi ที่ไม่มีรหัสผ่าน",
+    "choices": [
+      "การทำธุรกรรมผ่าน Public Wi-Fi ที่ไม่มีรหัสผ่าน",
+      "Sniffing (การดักฟังแพ็กเก็ต)",
+      "Adware (มัลแวร์โฆษณา)",
+      "Dictionary Attack",
+      "Access Attacks (ความพยายามเข้าใช้ระบบ)",
+      "Spoofing (การปลอมแปลงตัวตน)",
+      "Web Application Firewall (WAF)",
+      "Network Level (IPSec)",
+      "S/MIME หรือ PGP",
+      "กระทบต่อ Availability (ความพร้อมใช้งาน)"
+    ],
+    "explanation": "สไลด์ 3.pdf หน้า 41 & แบบฝึกหัดข้อ 10: การทำธุรกรรมการเงินผ่าน Free Public Wi-Fi เสี่ยงสูงมากเพราะเครือข่ายเปิด อาจมีผู้ไม่ประสงค์ดีดักจับแพ็กเก็ตแบบ Man-in-the-Middle",
+    "memoryHook": "อย่าทำธุรกรรมการเงินบน 'Wi-Fi สาธารณะฟรี (Public Wi-Fi)' เด็ดขาด!",
+    "keywords": [
+      "เสี่ยงที่สุด",
+      "ธุรกรรมการเงิน",
+      "Public Wi-Fi"
+    ]
+  },
+  {
+    "id": 66,
+    "set": 7,
+    "setName": "ชุดที่ 7: เครือข่ายและความปลอดภัยบุคคลทั่วไป (3.pdf & 4.pdf)",
+    "category": "Network & User Security",
+    "question": "การปลอมแปลงที่อยู่ IP หรือที่อยู่อีเมลเพื่อหลอกให้ผู้รับหลงเชื่อว่าเป็นเครื่องหรือบุคคลที่น่าเชื่อถือ",
+    "answer": "Spoofing (การปลอมแปลงตัวตน)",
+    "choices": [
+      "Spoofing (การปลอมแปลงตัวตน)",
+      "การทำธุรกรรมผ่าน Public Wi-Fi ที่ไม่มีรหัสผ่าน",
+      "Sniffing (การดักฟังแพ็กเก็ต)",
+      "Adware (มัลแวร์โฆษณา)",
+      "Dictionary Attack",
+      "Access Attacks (ความพยายามเข้าใช้ระบบ)",
+      "Web Application Firewall (WAF)",
+      "Network Level (IPSec)",
+      "S/MIME หรือ PGP",
+      "กระทบต่อ Availability (ความพร้อมใช้งาน)"
+    ],
+    "explanation": "สไลด์ 3.pdf: Spoofing (เช่น IP Spoofing, Email Spoofing) คือการปลอมแปลงข้อมูลต้นทางเพื่อหลอกระบบหรือเหยื่อว่ามาจากแหล่งที่ถูกต้อง",
+    "memoryHook": "ปลอม IP / ปลอมบัตร = 'Spoofing'",
+    "keywords": [
+      "ปลอมแปลง IP",
+      "Spoofing",
+      "ปลอมแปลงตัวตน"
+    ]
+  },
+  {
+    "id": 67,
+    "set": 7,
+    "setName": "ชุดที่ 7: เครือข่ายและความปลอดภัยบุคคลทั่วไป (3.pdf & 4.pdf)",
+    "category": "Network & User Security",
+    "question": "ไฟร์วอลล์ที่ออกแบบมาเพื่อปกป้องเว็บไซต์จากการโจมตี เช่น SQL Injection หรือ XSS โดยเฉพาะ",
+    "answer": "Web Application Firewall (WAF)",
+    "choices": [
+      "Web Application Firewall (WAF)",
+      "Spoofing (การปลอมแปลงตัวตน)",
+      "การทำธุรกรรมผ่าน Public Wi-Fi ที่ไม่มีรหัสผ่าน",
+      "Sniffing (การดักฟังแพ็กเก็ต)",
+      "Adware (มัลแวร์โฆษณา)",
+      "Dictionary Attack",
+      "Access Attacks (ความพยายามเข้าใช้ระบบ)",
+      "Network Level (IPSec)",
+      "S/MIME หรือ PGP",
+      "กระทบต่อ Availability (ความพร้อมใช้งาน)"
+    ],
+    "explanation": "สไลด์ 4.pdf หน้า 21: แนวทางป้องกันระบุให้ติดตั้ง 'เว็บแอปพลิเคชันไฟร์วอลล์ (Web Application Firewall - WAF)' เพื่อบล็อกการจู่โจมระดับแอปพลิเคชัน",
+    "memoryHook": "ไฟร์วอลล์สำหรับเว็บโดยเฉพาะ = 'WAF (Web Application Firewall)'",
+    "keywords": [
+      "ไฟร์วอลล์",
+      "เว็บแอปพลิเคชัน",
+      "WAF"
+    ]
+  },
+  {
+    "id": 68,
+    "set": 7,
+    "setName": "ชุดที่ 7: เครือข่ายและความปลอดภัยบุคคลทั่วไป (3.pdf & 4.pdf)",
+    "category": "Network & User Security",
+    "question": "ระดับชั้นในสถาปัตยกรรม TCP/IP ที่โปรโตคอล IPSec ทำงาน",
+    "answer": "Network Level (IPSec)",
+    "choices": [
+      "Network Level (IPSec)",
+      "Web Application Firewall (WAF)",
+      "Spoofing (การปลอมแปลงตัวตน)",
+      "การทำธุรกรรมผ่าน Public Wi-Fi ที่ไม่มีรหัสผ่าน",
+      "Sniffing (การดักฟังแพ็กเก็ต)",
+      "Adware (มัลแวร์โฆษณา)",
+      "Dictionary Attack",
+      "Access Attacks (ความพยายามเข้าใช้ระบบ)",
+      "S/MIME หรือ PGP",
+      "กระทบต่อ Availability (ความพร้อมใช้งาน)"
+    ],
+    "explanation": "สไลด์ 4.pdf หน้า 7: แผนผัง TCP/IP Protocol Stack แสดงชัดเจนว่า: (a) Network Level ใช้ IP/IPSec, (b) Transport Level ใช้ SSL/TLS, (c) Application Level ใช้ S/MIME, PGP, Kerberos",
+    "memoryHook": "IPSec ทำงานที่ระดับ 'Network Level' (ตรงกับชื่อ IP)",
+    "keywords": [
+      "IPSec",
+      "ระดับชั้น",
+      "Network Level"
+    ]
+  },
+  {
+    "id": 69,
+    "set": 7,
+    "setName": "ชุดที่ 7: เครือข่ายและความปลอดภัยบุคคลทั่วไป (3.pdf & 4.pdf)",
+    "category": "Network & User Security",
+    "question": "โปรโตคอลความปลอดภัยสำหรับการเข้ารหัสอีเมลในระดับ Application Level",
+    "answer": "S/MIME หรือ PGP",
+    "choices": [
+      "S/MIME หรือ PGP",
+      "Network Level (IPSec)",
+      "Web Application Firewall (WAF)",
+      "Spoofing (การปลอมแปลงตัวตน)",
+      "การทำธุรกรรมผ่าน Public Wi-Fi ที่ไม่มีรหัสผ่าน",
+      "Sniffing (การดักฟังแพ็กเก็ต)",
+      "Adware (มัลแวร์โฆษณา)",
+      "Dictionary Attack",
+      "Access Attacks (ความพยายามเข้าใช้ระบบ)",
+      "กระทบต่อ Availability (ความพร้อมใช้งาน)"
+    ],
+    "explanation": "สไลด์ 4.pdf หน้า 7: ในระดับ Application Level เครื่องมือความปลอดภัยสำหรับอีเมลและข้อมูลคือ S/MIME และ PGP",
+    "memoryHook": "เข้ารหัสอีเมลระดับแอป = 'S/MIME หรือ PGP'",
+    "keywords": [
+      "อีเมล",
+      "Application Level",
+      "S/MIME",
+      "PGP"
+    ]
+  },
+  {
+    "id": 70,
+    "set": 7,
+    "setName": "ชุดที่ 7: เครือข่ายและความปลอดภัยบุคคลทั่วไป (3.pdf & 4.pdf)",
+    "category": "Network & User Security",
+    "question": "การโจมตีแบบ DoS / DDoS ส่งผลกระทบรุนแรงที่สุดต่อองค์ประกอบใดของ CIA Triad",
+    "answer": "กระทบต่อ Availability (ความพร้อมใช้งาน)",
+    "choices": [
+      "กระทบต่อ Availability (ความพร้อมใช้งาน)",
+      "S/MIME หรือ PGP",
+      "Network Level (IPSec)",
+      "Web Application Firewall (WAF)",
+      "Spoofing (การปลอมแปลงตัวตน)",
+      "การทำธุรกรรมผ่าน Public Wi-Fi ที่ไม่มีรหัสผ่าน",
+      "Sniffing (การดักฟังแพ็กเก็ต)",
+      "Adware (มัลแวร์โฆษณา)",
+      "Dictionary Attack",
+      "Access Attacks (ความพยายามเข้าใช้ระบบ)"
+    ],
+    "explanation": "สไลด์ 3.pdf & 4.pdf: DoS มีจุดประสงค์ทำให้ระบบหรือบริการล่ม ใช้งานไม่ได้ จึงทำลาย Availability (ความพร้อมใช้งาน) โดยตรง",
+    "memoryHook": "DoS ถล่มระบบล่ม = กระทบ 'Availability (ความพร้อมใช้งาน)'",
+    "keywords": [
+      "DoS",
+      "DDoS",
+      "CIA Triad",
+      "Availability"
+    ]
+  }
+]

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="th" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickTiew ⚡ ติวสอบ Web & Cyber Security</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            },
+            accent: {
+              cyan: '#06b6d4',
+              emerald: '#10b981',
+              amber: '#f59e0b',
+              rose: '#f43f5e',
+            }
+          },
+          fontFamily: {
+            sans: ['Kanit', 'Prompt', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts: Kanit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      font-family: 'Kanit', sans-serif;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(99, 102, 241, 0.5);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(99, 102, 241, 0.8);
+    }
+    /* Card Flip 3D effect for flashcards */
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+    .transform-style-3d {
+      transform-style: preserve-3d;
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Brand Logo & Title -->
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="switchMode('worked')">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/25">
+            <i data-lucide="zap" class="w-6 h-6 text-white fill-current"></i>
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="font-bold text-xl tracking-tight bg-gradient-to-r from-white via-indigo-100 to-cyan-300 bg-clip-text text-transparent">QuickTiew</span>
+              <span class="px-2 py-0.5 text-xs font-semibold uppercase tracking-wider rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Exam Prep ⚡</span>
+            </div>
+            <p class="text-xs text-slate-400 hidden sm:block">Web & Cyber Security • เทคนิค Reverse Engineering</p>
+          </div>
+        </div>
+
+        <!-- Mode Navigation Tabs -->
+        <nav class="hidden md:flex items-center space-x-1 bg-slate-900/90 p-1.5 rounded-xl border border-slate-800">
+          <button onclick="switchMode('worked')" id="tab-worked" class="nav-tab px-3.5 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center space-x-2 bg-indigo-600 text-white shadow-sm">
+            <i data-lucide="brain" class="w-4 h-4"></i>
+            <span>จำคำตอบ (Worked)</span>
+          </button>
+          <button onclick="switchMode('matching')" id="tab-matching" class="nav-tab px-3.5 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center space-x-2 text-slate-400 hover:text-slate-200">
+            <i data-lucide="columns-2" class="w-4 h-4"></i>
+            <span>จับคู่ (1.pdf)</span>
+          </button>
+          <button onclick="switchMode('quiz')" id="tab-quiz" class="nav-tab px-3.5 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center space-x-2 text-slate-400 hover:text-slate-200">
+            <i data-lucide="shuffle" class="w-4 h-4"></i>
+            <span>ทำโจทย์สลับชอยส์</span>
+          </button>
+          <button onclick="switchMode('flashcard')" id="tab-flashcard" class="nav-tab px-3.5 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center space-x-2 text-slate-400 hover:text-slate-200">
+            <i data-lucide="layers" class="w-4 h-4"></i>
+            <span>การ์ดจำเร็ว</span>
+          </button>
+          <button onclick="switchMode('mock')" id="tab-mock" class="nav-tab px-3.5 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center space-x-2 text-slate-400 hover:text-slate-200">
+            <i data-lucide="timer" class="w-4 h-4"></i>
+            <span>จำลองสอบ 30 ข้อ</span>
+          </button>
+        </nav>
+
+        <!-- Right Quick Actions -->
+        <div class="flex items-center space-x-2">
+          <!-- Sound Toggle -->
+          <button onclick="toggleSound()" id="sound-btn" title="เปิด/ปิดเสียงเอฟเฟกต์" class="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 transition-colors">
+            <i data-lucide="volume-2" id="sound-icon" class="w-5 h-5"></i>
+          </button>
+          <!-- Weak Spots Badge / Button -->
+          <button onclick="switchMode('weakness')" id="weak-btn" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-400 hover:bg-rose-500/20 transition-all text-xs font-medium">
+            <i data-lucide="alert-circle" class="w-4 h-4"></i>
+            <span>ข้อที่ผิด (<span id="weak-count">0</span>)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Mode Tabs (Horizontal Scroll) -->
+      <div class="flex md:hidden items-center space-x-1 overflow-x-auto py-2 border-t border-slate-800/60 no-scrollbar">
+        <button onclick="switchMode('worked')" id="m-tab-worked" class="mobile-tab whitespace-nowrap px-3 py-1 rounded-lg text-xs font-medium bg-indigo-600 text-white">
+          จำคำตอบ (Worked)
+        </button>
+        <button onclick="switchMode('matching')" id="m-tab-matching" class="mobile-tab whitespace-nowrap px-3 py-1 rounded-lg text-xs font-medium bg-slate-900 text-slate-400">
+          จับคู่ (1.pdf)
+        </button>
+        <button onclick="switchMode('quiz')" id="m-tab-quiz" class="mobile-tab whitespace-nowrap px-3 py-1 rounded-lg text-xs font-medium bg-slate-900 text-slate-400">
+          ทำโจทย์สลับ
+        </button>
+        <button onclick="switchMode('flashcard')" id="m-tab-flashcard" class="mobile-tab whitespace-nowrap px-3 py-1 rounded-lg text-xs font-medium bg-slate-900 text-slate-400">
+          การ์ดจำเร็ว
+        </button>
+        <button onclick="switchMode('mock')" id="m-tab-mock" class="mobile-tab whitespace-nowrap px-3 py-1 rounded-lg text-xs font-medium bg-slate-900 text-slate-400">
+          จำลองสอบ 30 ข้อ
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sub-header / Category Selector & Controls -->
+  <div class="bg-slate-900/40 border-b border-slate-800/80 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <!-- Set Dropdown / Filter -->
+      <div class="flex items-center space-x-2 w-full sm:w-auto">
+        <span class="text-xs font-medium text-slate-400 flex items-center space-x-1 whitespace-nowrap">
+          <i data-lucide="filter" class="w-3.5 h-3.5 text-indigo-400"></i>
+          <span>ชุดข้อสอบ:</span>
+        </span>
+        <select id="set-selector" onchange="handleSetChange(this.value)" class="bg-slate-900 border border-slate-700 text-slate-200 text-sm rounded-lg px-3 py-1.5 focus:ring-2 focus:ring-indigo-500 focus:outline-none w-full sm:w-80 cursor-pointer">
+          <option value="all">⚡ รวมทั้งหมดทุกชุด (70 ข้อ จากไฟล์ 1-4)</option>
+          <option value="1">ชุด 1: พื้นฐานความปลอดภัยเว็บ & ภัยคุกคาม (1.pdf 1-10)</option>
+          <option value="2">ชุด 2: มาตรการป้องกัน & SSL / TLS (1.pdf 11-20)</option>
+          <option value="3">ชุด 3: สถาปัตยกรรม SSL & Handshake (1.pdf 21-30)</option>
+          <option value="4">ชุด 4: ซอฟต์แวร์อันตราย & มัลแวร์ (2.ppt)</option>
+          <option value="5">ชุด 5: ยุค Antivirus & โจมตี DDoS (2.ppt)</option>
+          <option value="6">ชุด 6: Cyber Security & CIA Triad (3.pdf)</option>
+          <option value="7">ชุด 7: โจมตีเครือข่าย & ความปลอดภัยบุคคล (3.pdf & 4.pdf)</option>
+        </select>
+      </div>
+
+      <!-- Quick Search & Actions -->
+      <div class="flex items-center space-x-2 w-full sm:w-auto justify-end">
+        <div class="relative w-full sm:w-64">
+          <input type="text" id="search-input" oninput="handleSearch(this.value)" placeholder="ค้นหาโจทย์ หรือ keyword..." class="w-full bg-slate-900/90 border border-slate-700 text-slate-200 text-xs rounded-lg pl-8 pr-3 py-1.5 focus:ring-2 focus:ring-indigo-500 focus:outline-none placeholder:text-slate-500">
+          <i data-lucide="search" class="w-4 h-4 text-slate-500 absolute left-2.5 top-2"></i>
+        </div>
+        <button onclick="shuffleCurrentSet()" title="สลับโจทย์ใหม่ทั้งหมด" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-medium border border-slate-700 flex items-center space-x-1.5 transition-colors whitespace-nowrap shadow-sm">
+          <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-cyan-400"></i>
+          <span>สลับโจทย์</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- ============================================== -->
+    <!-- MODE 1: WORKED EXAMPLES / REVERSE ENGINEERING  -->
+    <!-- ============================================== -->
+    <section id="view-worked" class="mode-view space-y-6">
+      <!-- Strategy Banner -->
+      <div class="rounded-2xl p-5 bg-gradient-to-r from-indigo-950/60 via-slate-900 to-cyan-950/40 border border-indigo-500/20 relative overflow-hidden shadow-xl">
+        <div class="flex items-start justify-between gap-4">
+          <div class="space-y-1.5">
+            <div class="flex items-center space-x-2">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                Worked Examples & Reverse Engineering
+              </span>
+              <span class="text-xs text-slate-400">เทคนิคจำคำตอบก่อนเข้าห้องสอบ</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-white">จำแก่นคำตอบ & จับคู่ Keyword ลัด</h2>
+            <p class="text-sm text-slate-300 max-w-3xl leading-relaxed">
+              กวาดสายตาอ่าน <span class="text-cyan-300 font-semibold">โจทย์</span> คู่กับ <span class="text-emerald-400 font-semibold">คำตอบที่ถูกต้อง</span> และ <span class="text-amber-300 font-semibold">สูตรจำ (Reverse Hook)</span> ให้ขึ้นใจก่อน 1 รอบ เมื่อสมองจำ Pattern ได้แล้วค่อยสลับไปทำโจทย์ทดสอบในโหมดจับคู่หรือสลับชอยส์!
+            </p>
+          </div>
+          <div class="hidden lg:flex flex-col items-center justify-center p-3 rounded-xl bg-slate-950/60 border border-slate-800 text-center min-w-[120px]">
+            <span class="text-xs text-slate-400">จำนวนข้อทั้งหมด</span>
+            <span id="worked-total-badge" class="text-2xl font-bold text-indigo-400">70 ข้อ</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Worked Cards Grid -->
+      <div id="worked-cards-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- MODE 2: MATCHING DRILL (แบบกระดาษสอบ 1.pdf)    -->
+    <!-- ============================================== -->
+    <section id="view-matching" class="mode-view hidden space-y-6">
+      <div class="rounded-2xl p-5 bg-slate-900/90 border border-slate-800 shadow-xl space-y-4">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                1.pdf Matching Simulator
+              </span>
+              <span class="text-xs text-slate-400">ข้อสอบแบบจับคู่ A - J</span>
+            </div>
+            <h2 class="text-xl font-bold text-white mt-1">จับคู่โจทย์ฝั่งซ้ายกับตัวเลือกฝั่งขวา (สลับตำแหน่งทุกครั้ง)</h2>
+          </div>
+          <div class="flex items-center space-x-2">
+            <button onclick="resetMatching()" class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium border border-slate-700 flex items-center space-x-1.5 transition-colors">
+              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+              <span>รีเซ็ต</span>
+            </button>
+            <button onclick="checkMatchingAnswers()" class="px-4 py-1.5 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white text-xs font-semibold flex items-center space-x-1.5 shadow-md shadow-emerald-600/30 transition-all">
+              <i data-lucide="check-circle" class="w-4 h-4"></i>
+              <span>ตรวจคำตอบ</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Matching Score Banner (Hidden initially) -->
+        <div id="matching-score-banner" class="hidden p-4 rounded-xl border transition-all"></div>
+
+        <!-- Matching Two-Column Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- Left: 10 Questions -->
+          <div class="lg:col-span-7 space-y-3">
+            <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+              <span>ฝั่งซ้าย: โจทย์คำถาม</span>
+              <span class="text-xs text-indigo-400 font-normal">เลือกตัวอักษร A-J มาใส่</span>
+            </h3>
+            <div id="matching-questions-list" class="space-y-2.5">
+              <!-- Rendered by app.js -->
+            </div>
+          </div>
+
+          <!-- Right: Choices A-J Sticky Panel -->
+          <div class="lg:col-span-5 space-y-3">
+            <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+              <span>ฝั่งขวา: ตัวเลือก (A - J)</span>
+              <span class="text-xs text-slate-500">สลับลำดับอัตโนมัติ</span>
+            </h3>
+            <div id="matching-choices-list" class="bg-slate-950 p-4 rounded-xl border border-slate-800/80 space-y-2 sticky top-24 max-h-[75vh] overflow-y-auto">
+              <!-- Rendered by app.js -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- MODE 3: MULTIPLE CHOICE QUIZ (สลับโจทย์+ชอยส์) -->
+    <!-- ============================================== -->
+    <section id="view-quiz" class="mode-view hidden space-y-6">
+      <div class="max-w-3xl mx-auto space-y-6">
+        <!-- Progress Bar & Status -->
+        <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 shadow-lg space-y-3">
+          <div class="flex items-center justify-between text-xs text-slate-400">
+            <div class="flex items-center space-x-2">
+              <span class="font-semibold text-white">คำถามข้อที่ <span id="quiz-curr-idx" class="text-indigo-400 font-mono text-base">1</span> / <span id="quiz-total-idx">70</span></span>
+              <span id="quiz-cat-badge" class="px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 text-[11px] border border-slate-700">Category</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <span class="text-emerald-400 font-medium">ถูก: <span id="quiz-correct-count">0</span></span>
+              <span class="text-rose-400 font-medium">ผิด: <span id="quiz-wrong-count">0</span></span>
+            </div>
+          </div>
+          <!-- Progress Track -->
+          <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+            <div id="quiz-progress-bar" class="bg-gradient-to-r from-indigo-500 to-cyan-400 h-2 rounded-full transition-all duration-300" style="width: 5%;"></div>
+          </div>
+        </div>
+
+        <!-- Quiz Question Card -->
+        <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 shadow-xl space-y-6">
+          <div class="space-y-2">
+            <span class="text-xs font-semibold text-indigo-400 uppercase tracking-wider" id="quiz-set-name">ชุดที่ 1</span>
+            <h3 id="quiz-question-text" class="text-xl sm:text-2xl font-semibold text-white leading-relaxed">
+              กำลังโหลดคำถาม...
+            </h3>
+          </div>
+
+          <!-- 4 Shuffled Choices -->
+          <div id="quiz-choices-container" class="space-y-3">
+            <!-- Rendered by app.js -->
+          </div>
+
+          <!-- Feedback & Worked Example Explanation (Revealed after selection) -->
+          <div id="quiz-feedback-box" class="hidden p-5 rounded-xl border space-y-3 transition-all">
+            <!-- Content filled by app.js -->
+          </div>
+
+          <!-- Quiz Controls -->
+          <div class="flex items-center justify-between pt-4 border-t border-slate-800">
+            <button onclick="prevQuizQuestion()" id="quiz-prev-btn" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-medium border border-slate-700 flex items-center space-x-1.5 transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
+              <i data-lucide="chevron-left" class="w-4 h-4"></i>
+              <span>ข้อย้อนหลัง</span>
+            </button>
+            <button onclick="nextQuizQuestion()" id="quiz-next-btn" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold flex items-center space-x-1.5 shadow-lg shadow-indigo-600/30 transition-all">
+              <span>ข้อถัดไป</span>
+              <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- MODE 4: FLASHCARDS (การ์ดจำเร็ว)               -->
+    <!-- ============================================== -->
+    <section id="view-flashcard" class="mode-view hidden space-y-6">
+      <div class="max-w-2xl mx-auto space-y-6">
+        <div class="text-center space-y-1">
+          <h2 class="text-2xl font-bold text-white">การ์ดช่วยจำเร็ว (Active Recall Flashcards)</h2>
+          <p class="text-xs text-slate-400">คลิกที่การ์ดเพื่อพลิกดูคำตอบและเทคนิคจำ</p>
+        </div>
+
+        <div class="flex items-center justify-between text-xs text-slate-400 px-2">
+          <span>ใบที่ <span id="fc-curr-idx" class="font-bold text-indigo-400 text-sm">1</span> จาก <span id="fc-total-idx">70</span></span>
+          <span id="fc-category" class="px-2.5 py-0.5 rounded-full bg-slate-900 border border-slate-800 text-slate-300">Category</span>
+        </div>
+
+        <!-- 3D Flippable Card -->
+        <div class="perspective-1000 w-full min-h-[340px] cursor-pointer" onclick="flipFlashcard()">
+          <div id="flashcard-inner" class="relative w-full min-h-[340px] rounded-2xl transition-transform duration-500 transform-style-3d shadow-2xl">
+            <!-- Front Face (Question) -->
+            <div id="fc-front" class="absolute inset-0 w-full h-full rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-950/70 border border-slate-800 p-8 flex flex-col justify-between backface-hidden">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400">คำถาม</span>
+                <span class="text-xs text-slate-500 flex items-center space-x-1">
+                  <i data-lucide="mouse-pointer-click" class="w-3.5 h-3.5"></i>
+                  <span>คลิกเพื่อดูคำตอบ</span>
+                </span>
+              </div>
+              <div class="my-auto text-center px-4">
+                <h3 id="fc-question-text" class="text-xl sm:text-2xl font-semibold text-white leading-relaxed">
+                  โจทย์คำถาม...
+                </h3>
+              </div>
+              <div class="text-center text-xs text-slate-500">
+                แตะเพื่อพลิกเฉลย
+              </div>
+            </div>
+
+            <!-- Back Face (Answer + Hook) -->
+            <div id="fc-back" class="absolute inset-0 w-full h-full rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950/60 border border-emerald-500/40 p-8 flex flex-col justify-between backface-hidden rotate-y-180">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold uppercase tracking-wider text-emerald-400">เฉลย & สูตรจำ</span>
+                <span class="text-xs text-slate-500">คลิกเพื่อพลิกกลับ</span>
+              </div>
+              <div class="my-auto space-y-4 text-center px-4">
+                <div class="text-xs text-slate-400">คำตอบที่ถูกต้อง:</div>
+                <div id="fc-answer-text" class="text-2xl font-bold text-emerald-300">
+                  คำตอบ
+                </div>
+                <div id="fc-hook-text" class="p-3 rounded-xl bg-slate-950/80 border border-amber-500/30 text-amber-300 text-xs text-left">
+                  สูตรจำ
+                </div>
+              </div>
+              <div class="text-center text-xs text-slate-500">
+                แตะเพื่อพลิกคำถาม
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flashcard Controls -->
+        <div class="flex items-center justify-center space-x-4">
+          <button onclick="prevFlashcard()" class="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 transition-colors">
+            <i data-lucide="arrow-left" class="w-5 h-5"></i>
+          </button>
+          <button onclick="flipFlashcard()" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm flex items-center space-x-2 shadow-lg shadow-indigo-600/30 transition-all">
+            <i data-lucide="repeat" class="w-4 h-4"></i>
+            <span>พลิกการ์ด (Spacebar)</span>
+          </button>
+          <button onclick="nextFlashcard()" class="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 transition-colors">
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- MODE 5: MOCK EXAM (จำลองสอบ 30 ข้อเหมือน 1.pdf) -->
+    <!-- ============================================== -->
+    <section id="view-mock" class="mode-view hidden space-y-6">
+      <div class="max-w-4xl mx-auto space-y-6">
+        <!-- Mock Exam Header & Timer -->
+        <div class="bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 p-6 rounded-2xl border border-indigo-500/30 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                Mock Exam Simulation
+              </span>
+              <span class="text-xs text-slate-400">30 ข้อ • สุ่มจากคลังโจทย์ทั้งหมด</span>
+            </div>
+            <h2 class="text-2xl font-bold text-white mt-1">จำลองการสอบจริง (เกณฑ์ผ่าน 80% = 24/30)</h2>
+          </div>
+
+          <div class="flex items-center space-x-4">
+            <!-- Timer Badge -->
+            <div class="flex items-center space-x-2 px-4 py-2 rounded-xl bg-slate-950 border border-slate-800 text-indigo-400 font-mono text-lg font-bold shadow-inner">
+              <i data-lucide="clock" class="w-5 h-5 text-indigo-400 animate-pulse"></i>
+              <span id="mock-timer">30:00</span>
+            </div>
+            <button onclick="submitMockExam()" id="mock-submit-btn" class="px-5 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-semibold text-sm shadow-lg shadow-emerald-600/30 transition-all">
+              ส่งข้อสอบ
+            </button>
+          </div>
+        </div>
+
+        <!-- Mock Results Card (Shown after submit) -->
+        <div id="mock-results-card" class="hidden bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-2xl space-y-4">
+          <!-- Filled dynamically by app.js -->
+        </div>
+
+        <!-- Mock Exam Questions List -->
+        <div id="mock-questions-container" class="space-y-4">
+          <!-- Rendered by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- MODE 6: WEAK SPOTS DRILL (คลังข้อผิด)           -->
+    <!-- ============================================== -->
+    <section id="view-weakness" class="mode-view hidden space-y-6">
+      <div class="max-w-4xl mx-auto space-y-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-2xl font-bold text-white flex items-center space-x-2">
+              <i data-lucide="alert-triangle" class="w-6 h-6 text-rose-500"></i>
+              <span>คลังข้อที่เคยตอบผิด (Weak Spots Drill)</span>
+            </h2>
+            <p class="text-sm text-slate-400">ติวซ้ำข้อที่ยังไม่แม่นจนกว่าจะตอบถูก 100%</p>
+          </div>
+          <button onclick="clearWeakSpots()" class="px-3.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 text-xs font-medium border border-slate-800 transition-colors">
+            ล้างประวัติข้อผิด
+          </button>
+        </div>
+
+        <div id="weakness-container" class="space-y-4">
+          <!-- Rendered by app.js -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-auto border-t border-slate-900 bg-slate-950/60 py-6 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div>
+        <span>QuickTiew ⚡ ข้อสอบและเฉลยตรงตามเอกสารวิชา Web Security & Cyber Security</span>
+      </div>
+      <div class="flex items-center space-x-3">
+        <span>ผศ.รุ่ง หมูล้อม</span>
+        <span>•</span>
+        <a href="https://github.com/tinarmon/QuickTiew" target="_blank" class="hover:text-indigo-400 transition-colors">GitHub Repository</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Include Question Bank and App Logic -->
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
