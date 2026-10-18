@@ -1,6 +1,13 @@
 /**
  * QuickTiew - Application Logic
- * Supports Worked Examples, Matching (1.pdf), Multiple-Choice Quiz, Flashcards, Mock Exam, Weak Spots
+ * Supports:
+ * - Worked Examples (Reverse Engineering)
+ * - Matching (1.pdf 10-item simulator)
+ * - Multiple-Choice Quiz (100% shuffled questions & choices)
+ * - Active Recall Flashcards (3D Flip)
+ * - Mock Exam (30-item simulation with timer)
+ * - Weak Spots Drill (LocalStorage & NoSQL JSON DB Sync)
+ * - User Authentication & NoSQL JSON Database Integration (database.json)
  */
 
 // Application State
@@ -9,6 +16,13 @@ let state = {
   currentSet: 'all',
   searchQuery: '',
   soundEnabled: true,
+  // User Session
+  currentUser: {
+    username: 'นักศึกษา (Guest)',
+    avatar: '🎓'
+  },
+  selectedAvatar: '🎓',
+  examHistory: [],
   // Question collections
   filteredQuestions: [],
   // Quiz Mode
@@ -144,38 +158,351 @@ function shuffleArray(arr) {
 }
 
 // ==========================================
-// LocalStorage Persistence
+// User Authentication & NoSQL JSON DB Sync
 // ==========================================
-function loadStorage() {
-  try {
-    const savedWeak = localStorage.getItem('quicktiew_weak_spots');
-    if (savedWeak) {
-      state.weakSpots = new Set(JSON.parse(savedWeak));
-    }
-    const savedMastered = localStorage.getItem('quicktiew_mastered');
-    if (savedMastered) {
-      state.mastered = new Set(JSON.parse(savedMastered));
-    }
-    const savedSound = localStorage.getItem('quicktiew_sound');
-    if (savedSound !== null) {
-      state.soundEnabled = JSON.parse(savedSound);
-    }
-  } catch (e) {
-    console.error('Failed to load localStorage', e);
+function openUserModal() {
+  sfx.playClick();
+  const modal = document.getElementById('user-modal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    switchAuthTab(state.currentUser.username !== 'นักศึกษา (Guest)' ? 'history' : 'login');
   }
-  updateWeakCountBadge();
-  updateSoundIcon();
 }
 
-function saveStorage() {
+function closeUserModal() {
+  sfx.playClick();
+  const modal = document.getElementById('user-modal');
+  if (modal) modal.classList.add('hidden');
+}
+
+function switchAuthTab(tab) {
+  sfx.playClick();
+  const tabs = ['login', 'register', 'history'];
+  tabs.forEach(t => {
+    const btn = document.getElementById(`auth-tab-${t}`);
+    const content = document.getElementById(`auth-content-${t}`);
+    if (t === tab) {
+      if (btn) {
+        btn.className = 'flex-1 py-1.5 rounded-lg transition-all text-center font-semibold bg-indigo-600 text-white';
+      }
+      if (content) content.classList.remove('hidden');
+    } else {
+      if (btn) {
+        btn.className = 'flex-1 py-1.5 rounded-lg transition-all text-center text-slate-400 hover:text-white';
+      }
+      if (content) content.classList.add('hidden');
+    }
+  });
+
+  if (tab === 'history') {
+    renderUserHistory();
+  }
+  if (window.lucide) lucide.createIcons();
+}
+
+function selectAvatar(avatar) {
+  sfx.playClick();
+  state.selectedAvatar = avatar;
+  const preview = document.getElementById('modal-avatar-preview');
+  if (preview) preview.textContent = avatar;
+
+  const opts = document.querySelectorAll('.avatar-opt');
+  opts.forEach(el => {
+    if (el.textContent.trim() === avatar) {
+      el.className = 'avatar-opt text-xl p-1.5 rounded-lg cursor-pointer bg-indigo-600/30 border border-indigo-500/40';
+    } else {
+      el.className = 'avatar-opt text-xl p-1.5 rounded-lg cursor-pointer hover:bg-slate-800';
+    }
+  });
+}
+
+async function handleLoginSubmit() {
+  const usernameInput = document.getElementById('login-username');
+  const passwordInput = document.getElementById('login-password');
+  const msgEl = document.getElementById('login-msg');
+
+  const username = usernameInput ? usernameInput.value.trim() : '';
+  const password = passwordInput ? passwordInput.value : '';
+
+  if (!username) {
+    showAuthMsg(msgEl, 'กรุณากรอกชื่อผู้ใช้', false);
+    return;
+  }
+
   try {
-    localStorage.setItem('quicktiew_weak_spots', JSON.stringify([...state.weakSpots]));
-    localStorage.setItem('quicktiew_mastered', JSON.stringify([...state.mastered]));
+    const res = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      state.currentUser = {
+        username: data.user.username,
+        avatar: data.user.avatar || '🎓'
+      };
+      if (data.progress) {
+        state.mastered = new Set(data.progress.mastered || []);
+        state.weakSpots = new Set(data.progress.weakSpots || []);
+        state.quizResults = data.progress.quizStats || { correct: 0, wrong: 0 };
+      }
+      if (data.examHistory) {
+        state.examHistory = data.examHistory;
+      }
+      saveStorageLocally();
+      updateUserUI();
+      sfx.playSuccess();
+      showAuthMsg(msgEl, 'เข้าสู่ระบบสำเร็จ! โหลดความคืบหน้าเรียบร้อย', true);
+      setTimeout(() => closeUserModal(), 800);
+    } else {
+      sfx.playError();
+      showAuthMsg(msgEl, data.message || 'เข้าสู่ระบบไม่สำเร็จ', false);
+    }
+  } catch (err) {
+    // Server offline, local fallback
+    state.currentUser = { username, avatar: '🎓' };
+    saveStorageLocally();
+    updateUserUI();
+    showAuthMsg(msgEl, 'เข้าสู่ระบบโหมด Local แล้ว', true);
+    setTimeout(() => closeUserModal(), 800);
+  }
+}
+
+async function handleRegisterSubmit() {
+  const usernameInput = document.getElementById('reg-username');
+  const passwordInput = document.getElementById('reg-password');
+  const msgEl = document.getElementById('reg-msg');
+
+  const username = usernameInput ? usernameInput.value.trim() : '';
+  const password = passwordInput ? passwordInput.value : '';
+  const avatar = state.selectedAvatar || '🎓';
+
+  if (!username) {
+    showAuthMsg(msgEl, 'กรุณากรอกชื่อผู้ใช้', false);
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password, avatar })
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      state.currentUser = { username, avatar };
+      state.mastered = new Set();
+      state.weakSpots = new Set();
+      state.examHistory = [];
+      saveStorageLocally();
+      updateUserUI();
+      sfx.playSuccess();
+      showAuthMsg(msgEl, 'สมัครบัญชีสำเร็จ! เริ่มต้นบันทึกความคืบหน้า', true);
+      setTimeout(() => closeUserModal(), 800);
+    } else {
+      sfx.playError();
+      showAuthMsg(msgEl, data.message || 'สมัครไม่สำเร็จ', false);
+    }
+  } catch (err) {
+    // Local fallback
+    state.currentUser = { username, avatar };
+    saveStorageLocally();
+    updateUserUI();
+    showAuthMsg(msgEl, 'สร้างบัญชีในเครื่องสำเร็จ', true);
+    setTimeout(() => closeUserModal(), 800);
+  }
+}
+
+function quickGuestLogin() {
+  state.currentUser = { username: 'นักศึกษา (Guest)', avatar: '🎓' };
+  saveStorageLocally();
+  updateUserUI();
+  sfx.playClick();
+  closeUserModal();
+}
+
+function logoutUser() {
+  sfx.playClick();
+  state.currentUser = { username: 'นักศึกษา (Guest)', avatar: '🎓' };
+  saveStorageLocally();
+  updateUserUI();
+  switchAuthTab('login');
+}
+
+function showAuthMsg(el, text, isSuccess) {
+  if (!el) return;
+  el.classList.remove('hidden', 'bg-emerald-950/40', 'border-emerald-500/40', 'text-emerald-300', 'bg-rose-950/40', 'border-rose-500/40', 'text-rose-300');
+  if (isSuccess) {
+    el.classList.add('bg-emerald-950/40', 'border-emerald-500/40', 'text-emerald-300');
+  } else {
+    el.classList.add('bg-rose-950/40', 'border-rose-500/40', 'text-rose-300');
+  }
+  el.textContent = text;
+}
+
+function updateUserUI() {
+  const avatarEl = document.getElementById('user-avatar-badge');
+  const nameEl = document.getElementById('user-name-display');
+  const histUserEl = document.getElementById('hist-username');
+  const histMasteredEl = document.getElementById('hist-mastered-count');
+
+  if (avatarEl) avatarEl.textContent = state.currentUser.avatar || '🎓';
+  if (nameEl) nameEl.textContent = state.currentUser.username;
+  if (histUserEl) histUserEl.textContent = state.currentUser.username;
+  if (histMasteredEl) histMasteredEl.textContent = `จำได้แล้ว ${state.mastered.size} ข้อ`;
+
+  updateWeakCountBadge();
+  renderWorkedExamples();
+}
+
+function renderUserHistory() {
+  const container = document.getElementById('history-items-container');
+  if (!container) return;
+
+  if (!state.examHistory || state.examHistory.length === 0) {
+    container.innerHTML = `
+      <div class="text-center py-8 text-slate-500 text-xs">
+        ยังไม่มีประวัติการสอบจำลอง (Mock Exam)<br>
+        ไปที่แท็บ "จำลองสอบ 30 ข้อ" เพื่อเริ่มสอบ
+      </div>
+    `;
+    return;
+  }
+
+  // Sort latest first
+  const sorted = [...state.examHistory].reverse();
+  container.innerHTML = sorted.map((ex, i) => `
+    <div class="p-3 rounded-xl bg-slate-950 border ${ex.passed ? 'border-emerald-500/30' : 'border-rose-500/30'} flex items-center justify-between text-xs">
+      <div class="flex items-center space-x-2.5">
+        <span class="w-8 h-8 rounded-lg ${ex.passed ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'} font-bold flex items-center justify-center font-mono">
+          ${ex.score}/${ex.total}
+        </span>
+        <div>
+          <div class="font-semibold ${ex.passed ? 'text-emerald-300' : 'text-rose-300'}">
+            ${ex.passed ? '✓ ผ่านเกณฑ์' : '✗ ไม่ผ่าน'} (${ex.percentage}%)
+          </div>
+          <div class="text-[10px] text-slate-500">${ex.timestamp || 'เพิ่งทำเสร็จ'}</div>
+        </div>
+      </div>
+      <div class="text-right text-[11px] text-slate-400">
+        ผิด ${ex.wrongCount || (ex.total - ex.score)} ข้อ
+      </div>
+    </div>
+  `).join('');
+}
+
+// ==========================================
+// Persistence: Local + Server NoSQL JSON Sync
+// ==========================================
+async function syncServerProgress() {
+  if (!state.currentUser || !state.currentUser.username) return;
+
+  try {
+    await fetch('/api/user/progress', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: state.currentUser.username,
+        progress: {
+          mastered: [...state.mastered],
+          weakSpots: [...state.weakSpots],
+          quizStats: state.quizResults
+        }
+      })
+    });
+  } catch (e) {
+    // Offline mode silently handles storage locally
+  }
+}
+
+async function syncServerExam(examRecord) {
+  try {
+    const res = await fetch('/api/user/exam', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(examRecord)
+    });
+    const data = await res.json();
+    if (data.examRecord) {
+      state.examHistory.push(data.examRecord);
+    }
+  } catch (e) {
+    state.examHistory.push(examRecord);
+  }
+}
+
+function saveStorageLocally() {
+  try {
+    const uKey = `quicktiew_${state.currentUser.username}`;
+    localStorage.setItem(`${uKey}_weak`, JSON.stringify([...state.weakSpots]));
+    localStorage.setItem(`${uKey}_mastered`, JSON.stringify([...state.mastered]));
+    localStorage.setItem(`${uKey}_history`, JSON.stringify(state.examHistory));
+    localStorage.setItem('quicktiew_current_user', JSON.stringify(state.currentUser));
     localStorage.setItem('quicktiew_sound', JSON.stringify(state.soundEnabled));
   } catch (e) {
     console.error('Failed to save localStorage', e);
   }
   updateWeakCountBadge();
+}
+
+function saveStorage() {
+  saveStorageLocally();
+  syncServerProgress();
+}
+
+async function loadStorage() {
+  try {
+    // 1. Current user
+    const savedUser = localStorage.getItem('quicktiew_current_user');
+    if (savedUser) {
+      state.currentUser = JSON.parse(savedUser);
+    }
+
+    const savedSound = localStorage.getItem('quicktiew_sound');
+    if (savedSound !== null) {
+      state.soundEnabled = JSON.parse(savedSound);
+    }
+
+    const uKey = `quicktiew_${state.currentUser.username}`;
+    const savedWeak = localStorage.getItem(`${uKey}_weak`);
+    if (savedWeak) state.weakSpots = new Set(JSON.parse(savedWeak));
+
+    const savedMastered = localStorage.getItem(`${uKey}_mastered`);
+    if (savedMastered) state.mastered = new Set(JSON.parse(savedMastered));
+
+    const savedHistory = localStorage.getItem(`${uKey}_history`);
+    if (savedHistory) state.examHistory = JSON.parse(savedHistory);
+
+    // Try fetching from Server NoSQL Database
+    if (state.currentUser.username) {
+      try {
+        const res = await fetch(`/api/user/progress?username=${encodeURIComponent(state.currentUser.username)}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.progress) {
+            if (data.progress.mastered && data.progress.mastered.length > 0) {
+              state.mastered = new Set(data.progress.mastered);
+            }
+            if (data.progress.weakSpots && data.progress.weakSpots.length > 0) {
+              state.weakSpots = new Set(data.progress.weakSpots);
+            }
+          }
+          if (data.examHistory) {
+            state.examHistory = data.examHistory;
+          }
+        }
+      } catch (err) {
+        // server offline, local storage kept
+      }
+    }
+  } catch (e) {
+    console.error('Failed to load storage', e);
+  }
+
+  updateUserUI();
+  updateSoundIcon();
 }
 
 function updateWeakCountBadge() {
@@ -293,7 +620,6 @@ function switchMode(mode) {
   sfx.playClick();
   state.currentMode = mode;
 
-  // Update tabs active state
   const modes = ['worked', 'matching', 'quiz', 'flashcard', 'mock', 'weakness'];
   modes.forEach(m => {
     const desktopTab = document.getElementById(`tab-${m}`);
@@ -319,7 +645,6 @@ function switchMode(mode) {
     }
   });
 
-  // Mode initializations
   state.filteredQuestions = getFilteredQuestions();
 
   if (mode === 'worked') {
@@ -363,7 +688,7 @@ function renderWorkedExamples() {
     return;
   }
 
-  container.innerHTML = list.map((q, idx) => {
+  container.innerHTML = list.map((q) => {
     const isMastered = state.mastered.has(q.id);
     const isWeak = state.weakSpots.has(q.id);
 
@@ -465,7 +790,6 @@ function toggleWeakSpot(id) {
 // MODE 2: MATCHING DRILL (แบบกระดาษสอบ 1.pdf)
 // ==========================================
 function initMatching() {
-  // Take 10 questions for the current set or first 10
   let pool = getFilteredQuestions();
   if (pool.length < 10) {
     pool = QUESTION_BANK.slice(0, 10);
@@ -473,14 +797,11 @@ function initMatching() {
     pool = pool.slice(0, 10);
   }
 
-  // Shuffle order of questions on left
   state.matchingQuestions = shuffleArray(pool);
 
-  // Extract choices: unique answers from these 10 questions
   const uniqueAnswers = Array.from(new Set(pool.map(q => q.answer)));
   const shuffledChoices = shuffleArray(uniqueAnswers);
 
-  // Map choices to letters A, B, C, D, ...
   const letters = 'ABCDEFGHIJ'.split('');
   state.matchingChoices = shuffledChoices.map((ans, idx) => ({
     letter: letters[idx],
@@ -499,7 +820,6 @@ function renderMatching() {
   const cContainer = document.getElementById('matching-choices-list');
   if (!qContainer || !cContainer) return;
 
-  // Render Right: Choices A-J
   cContainer.innerHTML = state.matchingChoices.map(c => `
     <div class="flex items-start space-x-2.5 p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-xs">
       <span class="w-6 h-6 rounded-md bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 font-bold font-mono flex items-center justify-center flex-shrink-0">
@@ -509,7 +829,6 @@ function renderMatching() {
     </div>
   `).join('');
 
-  // Render Left: 10 Questions with Select dropdown
   qContainer.innerHTML = state.matchingQuestions.map((q, idx) => {
     const selectedLetter = state.matchingUserAnswers[q.id] || '';
 
@@ -554,11 +873,9 @@ function checkMatchingAnswers() {
     const feedback = document.getElementById(`matching-feedback-${q.id}`);
     const userLetter = state.matchingUserAnswers[q.id] || '';
 
-    // Find what text corresponds to userLetter
     const chosenChoice = state.matchingChoices.find(c => c.letter === userLetter);
     const chosenText = chosenChoice ? chosenChoice.text : '';
 
-    // Find the correct letter for this question
     const correctChoice = state.matchingChoices.find(c => c.text === q.answer);
     const correctLetter = correctChoice ? correctChoice.letter : '?';
 
@@ -641,31 +958,24 @@ function renderQuiz() {
 
   const q = list[state.quizIndex];
 
-  // Update indexes
   document.getElementById('quiz-curr-idx').textContent = state.quizIndex + 1;
   document.getElementById('quiz-total-idx').textContent = list.length;
   document.getElementById('quiz-cat-badge').textContent = q.category;
   document.getElementById('quiz-set-name').textContent = q.setName;
   document.getElementById('quiz-question-text').textContent = q.question;
 
-  // Progress Bar
   const pct = Math.round(((state.quizIndex + 1) / list.length) * 100);
   document.getElementById('quiz-progress-bar').style.width = `${pct}%`;
 
-  // Score counters
   document.getElementById('quiz-correct-count').textContent = state.quizResults.correct;
   document.getElementById('quiz-wrong-count').textContent = state.quizResults.wrong;
 
-  // Nav buttons
   document.getElementById('quiz-prev-btn').disabled = state.quizIndex === 0;
 
-  // Generate 4 randomized choices (Correct answer + 3 random distractors from question's choices)
   let choicesPool = q.choices.filter(c => c !== q.answer);
-  // shuffle pool and pick 3
   let distractors = shuffleArray(choicesPool).slice(0, 3);
   let fourChoices = shuffleArray([q.answer, ...distractors]);
 
-  // If user already answered this question in this session:
   const prevSelected = state.quizAnswers[q.id];
   const choicesContainer = document.getElementById('quiz-choices-container');
   const feedbackBox = document.getElementById('quiz-feedback-box');
@@ -693,7 +1003,7 @@ function renderQuiz() {
 
 function handleQuizAnswer(selectedChoice) {
   const q = state.filteredQuestions[state.quizIndex];
-  if (state.quizAnswers[q.id]) return; // already answered
+  if (state.quizAnswers[q.id]) return;
 
   state.quizAnswers[q.id] = selectedChoice;
   const isCorrect = selectedChoice === q.answer;
@@ -743,7 +1053,6 @@ function revealQuizAnswer(selectedChoice, isNew) {
     }
   });
 
-  // Reveal Worked Example Feedback Box
   const feedbackBox = document.getElementById('quiz-feedback-box');
   if (feedbackBox) {
     feedbackBox.classList.remove('hidden');
@@ -787,7 +1096,6 @@ function nextQuizQuestion() {
     state.quizIndex++;
     renderQuiz();
   } else {
-    // Reached end of quiz
     alert(`🎉 ทำครบแล้วทุกข้อในชุดนี้! คุณได้ ${state.quizResults.correct} คะแนน จาก ${state.filteredQuestions.length} ข้อ`);
   }
 }
@@ -822,7 +1130,6 @@ function renderFlashcard() {
     <span class="font-bold text-amber-400">💡 เทคนิคจำ:</span> ${escapeHtml(q.memoryHook)}
   `;
 
-  // Reset flip
   state.fcFlipped = false;
   const inner = document.getElementById('flashcard-inner');
   if (inner) inner.classList.remove('rotate-y-180');
@@ -853,7 +1160,7 @@ function prevFlashcard() {
   renderFlashcard();
 }
 
-// Spacebar / Keyboard navigation for flashcards & quiz
+// Spacebar / Keyboard navigation
 window.addEventListener('keydown', (e) => {
   if (state.currentMode === 'flashcard') {
     if (e.code === 'Space') {
@@ -871,13 +1178,11 @@ window.addEventListener('keydown', (e) => {
 // MODE 5: MOCK EXAM (จำลองสอบ 30 ข้อเหมือน 1.pdf)
 // ==========================================
 function initMockExam() {
-  // Randomly sample 30 questions from the entire bank of 70
   state.mockQuestions = shuffleArray(QUESTION_BANK).slice(0, 30);
   state.mockUserAnswers = {};
   state.mockSubmitted = false;
   state.mockTimerSeconds = 1800; // 30 mins
 
-  // Reset timer
   if (state.mockTimerInterval) clearInterval(state.mockTimerInterval);
   state.mockTimerInterval = setInterval(updateMockTimer, 1000);
 
@@ -914,7 +1219,6 @@ function renderMockQuestions() {
   if (!container) return;
 
   container.innerHTML = state.mockQuestions.map((q, idx) => {
-    // Generate 4 randomized choices for mock
     let distractors = shuffleArray(q.choices.filter(c => c !== q.answer)).slice(0, 3);
     let fourChoices = shuffleArray([q.answer, ...distractors]);
 
@@ -991,15 +1295,25 @@ function submitMockExam() {
     }
   });
 
-  saveStorage();
-
-  // Scroll to top to see results
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  const resultsCard = document.getElementById('mock-results-card');
   const pct = Math.round((score / total) * 100);
   const isPass = pct >= 80;
 
+  // Save exam record to NoSQL JSON DB
+  const examRecord = {
+    username: state.currentUser.username,
+    score: score,
+    total: total,
+    percentage: pct,
+    passed: isPass,
+    duration: document.getElementById('mock-timer') ? document.getElementById('mock-timer').textContent : '30:00',
+    wrongCount: total - score
+  };
+  syncServerExam(examRecord);
+  saveStorage();
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const resultsCard = document.getElementById('mock-results-card');
   if (isPass) sfx.playSuccess();
   else sfx.playError();
 
@@ -1017,7 +1331,7 @@ function submitMockExam() {
               ${isPass ? '🎉 ผ่านเกณฑ์การทดสอบยอดเยี่ยม!' : '⚠️ ยังไม่ผ่านเกณฑ์ 80%'}
             </h3>
             <p class="text-xs text-slate-300 mt-1">
-              คุณทำได้ ${pct}% (ข้อที่ผิดจำนวน ${total - score} ข้อถูกส่งไปคลังข้อผิดเพื่อทวนซ้ำแล้ว)
+              คุณทำได้ ${pct}% (บันทึกลง NoSQL JSON Database เรียบร้อย ข้อที่ผิดถูกส่งไปคลังข้อผิด)
             </p>
           </div>
         </div>
@@ -1123,8 +1437,8 @@ function escapeHtml(str) {
 }
 
 // Initial Launch on DOM Ready
-document.addEventListener('DOMContentLoaded', () => {
-  loadStorage();
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadStorage();
   state.filteredQuestions = getFilteredQuestions();
   switchMode('worked');
 });

@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": "u_student",
+      "username": "นักศึกษา (Guest)",
+      "passwordHash": "",
+      "avatar": "🎓",
+      "createdAt": "2026-10-18T21:50:00Z",
+      "lastLogin": "2026-10-18T21:50:00Z"
+    }
+  ],
+  "progress": {
+    "นักศึกษา (Guest)": {
+      "mastered": [],
+      "weakSpots": [],
+      "matchingScores": {},
+      "quizStats": {
+        "correct": 0,
+        "wrong": 0
+      },
+      "lastActive": "2026-10-18T21:50:00Z"
+    }
+  },
+  "exam_history": []
+}
